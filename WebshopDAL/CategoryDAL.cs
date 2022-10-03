@@ -4,8 +4,7 @@ using WebshopIntertface;
 namespace WebshopDAL
 {
     public class CategoryDAL : ICategoryContainer
-    {
-        SqlConnection sqlconnection
+    {       
         SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User Id=dbi479257;Password=Dagal555;");
         // query create category
         public void CreateCategory(CategoryDTO categoryDTO)

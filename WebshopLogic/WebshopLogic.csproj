@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WebshopDAL\WebshopDAL.csproj" />
+    <ProjectReference Include="..\WebshopInterface\WebshopInterface.csproj" />
+  </ItemGroup>
+
 </Project>
