@@ -5,19 +5,31 @@ using System.Text;
 using System.Threading.Tasks;
 using WebshopInterface;
 using WebshopIntertface;
+using WebshopLogic.Helper;
 
 namespace WebshopLogic
 {
     public class ProductContainer
     {
         private IProductContainer Product;
-            public CategoryContainer(IProductContainer iproduct)
-        {
-            this.Product = iproduct;
-        }
+            public ProductContainer(IProductContainer iproduct)
+            { 
+                this.Product = iproduct;
+            }
         public void CreateProduct(Product product)
         {
-            ProductDTO productDTO = 
+            ProductDTO productDTO = ProductConvertor.ProductToDTO(product);
+            Product product1 = new Product(productDTO);
+            productDTO.ProductName = product1.ProductName;
+            productDTO.ProductDescription = product1.ProductDescription;
+            productDTO.ProductPrice = product1.ProductPrice; 
+            productDTO.ProductImage = product1.ProductImage;    
+
+        }
+
+        public void DeleteProduct(int productID)
+        {
+            Product.DeleteProduct(productID);
         }
         public List<Product> GetAllProduct()
         {
