@@ -11,7 +11,7 @@ namespace WebshopLogic.Helper
     {
         public static ProductDTO ProductToDTO(Product product)
         {
-            return new ProductDTO(product.ProductID, product.ProductName, product.ProductPrice, product.ProductDescription, product.ProductImage);
+            return new ProductDTO(product.ProductID, product.ProductName, product.ProductPrice, product.ProductDescription, product.ProductImage, product.Delete, product.CategoryID);
         }
     }
 }

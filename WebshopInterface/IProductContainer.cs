@@ -11,5 +11,7 @@ namespace WebshopInterface
     {      
         void CreateProduct(ProductDTO product); // ask using webinterface
         void DeleteProduct(int productID);
+        List<ProductDTO> GetAllProduct();
+        DateTime ArchiveProduct(int productID, DateTime dateTime);
     }
 }

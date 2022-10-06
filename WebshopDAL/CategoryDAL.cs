@@ -6,7 +6,7 @@ namespace WebshopDAL
     public class CategoryDAL : ICategoryContainer
     {
         SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User Id=dbi479257;Password=Dagal555;");
-       
+
         public void CreateCategory(CategoryDTO categoryDTO)
         {
             SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CatergoryName)", SqlConnection);
@@ -20,39 +20,43 @@ namespace WebshopDAL
             {
                 Console.WriteLine(exception);
             }
-            SqlConnection.Close();
-        }
-
-
-        public List<CategoryDTO> GetAllCategories()
-        {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category", SqlConnection);
-            SqlConnection.Open();
-            List<CategoryDTO> Result  = new List<CategoryDTO>();
-            try
+            finally
             {
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-                // zet het resultaat in de reader
-                while (reader.Read())
+                SqlConnection.Close();
+            }
+        }
+            public  List<CategoryDTO> GetAllCategories()
+            {
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category", SqlConnection);
+                SqlConnection.Open();
+                List<CategoryDTO> Result = new List<CategoryDTO>();
+                try
                 {
-                    Result.Add(new CategoryDTO()
+                    SqlDataReader reader = sqlCommand.ExecuteReader();
+                    // zet het resultaat in de reader
+                    while (reader.Read())
                     {
-                        CategoryID = (int)reader["CategoryID"],
-                        CategoryName = (string)reader["CategoyName"],
-                    });
-                };
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-            SqlConnection.Close();
-            return Result;
-        }
-
+                        Result.Add(new CategoryDTO()
+                        {
+                            CategoryID = (int)reader["CategoryID"],
+                            CategoryName = (string)reader["CategoyName"],
+                        });
+                    };
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception);
+                }
+                finally
+                {
+                    SqlConnection.Close();
+                }
+                return Result;
+            } 
         public void DeleteCategoryID(int categoryID)
         {
             throw new NotImplementedException();
         }
     }
+    
 }

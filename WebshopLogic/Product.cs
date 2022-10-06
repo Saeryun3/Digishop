@@ -14,7 +14,8 @@ namespace WebshopLogic
         public double ProductPrice { get; set; }
         public string ProductDescription { get; set; }
         public string ProductImage { get; set; }
-
+        public DateTime Delete { get; set; }
+        public int CategoryID { get; set; }
         public Product(ProductDTO productDTO)
         {
             this.ProductID = productDTO.ProductID;
@@ -22,6 +23,12 @@ namespace WebshopLogic
             this.ProductPrice = productDTO.ProductPrice;
             this.ProductDescription = productDTO.ProductDescription;
             this.ProductImage = productDTO.ProductImage;
+            this.Delete = productDTO.Delete;
+            this.CategoryID = productDTO.CategoryID;
+        }
+        public Product()
+        {
+
         }
 
     }

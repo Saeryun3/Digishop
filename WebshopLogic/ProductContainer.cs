@@ -11,10 +11,10 @@ namespace WebshopLogic
 {
     public class ProductContainer
     {
-        private IProductContainer Product;
+        private IProductContainer _iproductContainer;
             public ProductContainer(IProductContainer iproduct)
             { 
-                this.Product = iproduct;
+                this._iproductContainer = iproduct;
             }
         public void CreateProduct(Product product)
         {
@@ -26,19 +26,32 @@ namespace WebshopLogic
             productDTO.ProductImage = product1.ProductImage;    
 
         }
-
-        public void DeleteProduct(int productID)
-        {
-            Product.DeleteProduct(productID);
-        }
         public List<Product> GetAllProduct()
         {
+            List<ProductDTO> productDTOs = new List<ProductDTO>();
             List<Product> products = new List<Product>();
+            foreach (ProductDTO productDTO in productDTOs)
+            {
+                products.Add(new Product(productDTO));
+            }
             return products;
         }
-        public List<Product> GetAllProductByCategory(string category)
+
+        public DateTime ArchiveProduct(int productID)
         {
-            return GetAllProduct();
+            DateTime now = DateTime.Now;
+            _iproductContainer.ArchiveProduct(productID, now);
+            return DateTime.Now;
         }
+
+        //public void DeleteProduct(int productID)
+        //{
+        //    _iproductContainer.DeleteProduct(productID);
+        //}
+        //to do
+        //public List<_iproductContaier> GetAllProductByCategory(string category)
+        //{
+        //    return GetAllProduct();
+        //}
     }
 }
