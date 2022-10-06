@@ -16,5 +16,10 @@ namespace WebshopIntertface
             CategoryID = categoryID;
             CategoryName = categoryName;
         }
+
+        public CategoryDTO()
+        {
+
+        }
     }
 }

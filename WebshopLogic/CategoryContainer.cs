@@ -11,10 +11,10 @@ namespace WebshopLogic
 {
     public class CategoryContainer
     {
-        private ICategoryContainer Category;
+        private ICategoryContainer iCategoryContainer;
         public CategoryContainer(ICategoryContainer icategory)
         {
-            this.Category = icategory;
+            this.iCategoryContainer = icategory;
         }
 
         // to do implement functions
@@ -23,17 +23,24 @@ namespace WebshopLogic
         public void CreateCategory(Category category)
         {
             CategoryDTO categoryDTO = CatergoryConvertor.CatergoryToDTO(category);
-            Category category1 = new Category();
-            categoryDTO.CategoryName = category1.CategoryName;
+            iCategoryContainer.CreateCategory(categoryDTO);
+            //Container category1 = new Container(); wrong
+            //categoryDTO.CategoryName = category1.CategoryName; wrong
         }
         public List<Category> GetAllCategories()
         {
-            return new List<Category>();
+            List<CategoryDTO> categorieDTOs = iCategoryContainer.GetAllCategories();
+            List<Category> categories = new List<Category>();
+            foreach (CategoryDTO categoryDTO in categorieDTOs)
+            {
+                categories.Add(new Category(categoryDTO));
+            }
+            return categories;
         }
         ///to do delete
-        //public void DeleteCategoryID(int id)
-        //{
-
-        //}
+        public void DeleteCategoryID(int categoryID)
+        {
+            iCategoryContainer.DeleteCategoryID(categoryID);
+        }
     }
 }

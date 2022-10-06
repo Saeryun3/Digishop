@@ -10,5 +10,6 @@ namespace WebshopIntertface
     {
         void CreateCategory(CategoryDTO categoryDTO);
         List<CategoryDTO> GetAllCategories();
+        void DeleteCategoryID(int categoryID);
     }
 }
