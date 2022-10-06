@@ -17,9 +17,6 @@ namespace WebshopLogic
             this.iCategoryContainer = icategory;
         }
 
-        // to do implement functions
-        // interface C
-        // DAl / convertor
         public void CreateCategory(Category category)
         {
             CategoryDTO categoryDTO = CatergoryConvertor.CatergoryToDTO(category);

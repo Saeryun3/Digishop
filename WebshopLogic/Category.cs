@@ -12,13 +12,13 @@ namespace WebshopLogic
           this.CategoryID = categoryDTO.CategoryID;
           this.CategoryName = categoryDTO.CategoryName;
         }
-            //public CategoryDTO toDTO()
-            //{
-            //    return new CategoryDTO(CategoryID, CategoryName);
-            //}
         public Category()
         {
 
         }
+       //public CategoryDTO toDTO() you can also convert to dto with this function
+            //{
+            //    return new CategoryDTO(CategoryID, CategoryName);
+            //}
     } 
 }
