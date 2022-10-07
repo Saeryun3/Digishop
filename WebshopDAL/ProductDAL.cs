@@ -18,14 +18,16 @@ namespace WebshopDAL
         public void CreateProduct(ProductDTO productDTO)
         {
             // query create category
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(ProductName, ProductDescription, ProductPrice, ProductImage) VALUES (@ProductName, ProductDescription, ProductPrice, ProductImage)", SqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(ProductName, ProductDescription, ProductPrice, ProductImage, CategoryID) VALUES (@ProductName, ProductDescription, ProductPrice, ProductImage, CategoryID)", SqlConnection);
             SqlConnection.Open();
             sqlCommand.Parameters.AddWithValue("ProductName", productDTO.ProductName);
             sqlCommand.Parameters.AddWithValue("ProductDescription", productDTO.ProductDescription);
             sqlCommand.Parameters.AddWithValue("ProductPrice", productDTO.ProductPrice);
             sqlCommand.Parameters.AddWithValue("ProductImage", productDTO.ProductImage);
+            sqlCommand.Parameters.AddWithValue("CategoryID", productDTO.CategoryID);
             try
             {
+                // Execute sqlqueri return amount rows effected
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception exception)

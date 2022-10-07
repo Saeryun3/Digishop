@@ -34,7 +34,7 @@ namespace WebshopLogic
             }
             return categories;
         }
-        ///to do delete
+        ///to do delete not sure
         public void DeleteCategoryID(int categoryID)
         {
             _iCategoryContainer.DeleteCategoryID(categoryID);

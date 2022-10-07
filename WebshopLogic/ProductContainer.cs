@@ -19,12 +19,7 @@ namespace WebshopLogic
         public void CreateProduct(Product product)
         {
             ProductDTO productDTO = ProductConvertor.ProductToDTO(product);
-            Product product1 = new Product(productDTO);
-            productDTO.ProductName = product1.ProductName;
-            productDTO.ProductDescription = product1.ProductDescription;
-            productDTO.ProductPrice = product1.ProductPrice; 
-            productDTO.ProductImage = product1.ProductImage;    
-
+            _iproductContainer.CreateProduct(productDTO); 
         }
         public List<Product> GetAllProduct()
         {
