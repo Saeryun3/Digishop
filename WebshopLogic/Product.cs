@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebshopIntertface;
+using WebshopInterface;
 
 namespace WebshopLogic
 {
@@ -16,6 +16,7 @@ namespace WebshopLogic
         public string ProductImage { get; set; }
         public DateTime Delete { get; set; }
         public int CategoryID { get; set; }
+
         public Product(ProductDTO productDTO)
         {
             this.ProductID = productDTO.ProductID;

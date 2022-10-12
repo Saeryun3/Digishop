@@ -1,4 +1,4 @@
-﻿using WebshopIntertface;
+﻿using WebshopInterface;
 
 namespace WebshopLogic
 {

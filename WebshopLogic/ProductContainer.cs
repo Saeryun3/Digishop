@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebshopInterface;
-using WebshopIntertface;
 using WebshopLogic.Helper;
 
 namespace WebshopLogic
@@ -38,7 +37,6 @@ namespace WebshopLogic
             _iproductContainer.ArchiveProduct(productID, now);
             return DateTime.Now;
         }
-
         //public void DeleteProduct(int productID)
         //{
         //    _iproductContainer.DeleteProduct(productID);

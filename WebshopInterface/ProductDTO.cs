@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebshopIntertface
+namespace WebshopInterface
 {
     public class ProductDTO
     {
@@ -21,10 +21,10 @@ namespace WebshopIntertface
             ProductID = productID; ;
             ProductName = productName;
             ProductPrice = productPrice;
-            ProductDescription = productDescription; 
+            ProductDescription = productDescription;
             ProductImage = productImage;
             Delete = delete;
-            CategoryID = categoryID; 
+            CategoryID = categoryID;
         }
 
         public ProductDTO()

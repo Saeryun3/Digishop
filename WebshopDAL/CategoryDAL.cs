@@ -1,5 +1,5 @@
 ﻿using System.Data.SqlClient;
-using WebshopIntertface;
+using WebshopInterface;
 
 namespace WebshopDAL
 {
@@ -7,11 +7,11 @@ namespace WebshopDAL
     {
         SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User Id=dbi479257;Password=Dagal555;");
 
-        public void CreateCategory(CategoryDTO categoryDTO)
+        public bool CreateCategory(string categoryname)
         {
             SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CatergoryName)", SqlConnection);
             SqlConnection.Open();
-            sqlCommand.Parameters.AddWithValue("CategoryName", categoryDTO.CategoryName);
+            sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
             try
             {
                 sqlCommand.ExecuteNonQuery();
@@ -24,6 +24,7 @@ namespace WebshopDAL
             {
                 SqlConnection.Close();
             }
+                return true;
         }
             public  List<CategoryDTO> GetAllCategories()
             {

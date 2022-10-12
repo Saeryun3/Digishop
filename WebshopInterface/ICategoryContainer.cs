@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WebshopIntertface
+﻿namespace WebshopInterface
 {
     public interface ICategoryContainer
     {
-        void CreateCategory(CategoryDTO categoryDTO);
+        bool CreateCategory(string categoryname);
         List<CategoryDTO> GetAllCategories();
         void DeleteCategoryID(int categoryID);
     }

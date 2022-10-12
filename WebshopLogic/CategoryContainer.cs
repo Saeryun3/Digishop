@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebshopIntertface;
+using WebshopInterface;
 using WebshopLogic.Helper;
 
 namespace WebshopLogic
@@ -17,10 +17,11 @@ namespace WebshopLogic
             this._iCategoryContainer = icategory;
         }
 
-        public void CreateCategory(Category category)
+        public bool CreateCategory(string categoryname)
         {
-            CategoryDTO categoryDTO = CatergoryConvertor.CatergoryToDTO(category);
-            _iCategoryContainer.CreateCategory(categoryDTO);
+            _iCategoryContainer.CreateCategory(categoryname);
+            return true;    
+            //CategoryDTO categoryDTO = CatergoryConvertor.CatergoryToDTO(); need one datetype
             //Container category1 = new Container(); wrong
             //categoryDTO.CategoryName = category1.CategoryName; wrong
         }

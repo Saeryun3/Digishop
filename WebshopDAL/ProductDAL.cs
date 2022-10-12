@@ -6,7 +6,6 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using WebshopInterface;
-using WebshopIntertface;
 
 namespace WebshopDAL
 {
@@ -92,23 +91,23 @@ namespace WebshopDAL
             return dateTime;
         }
 
-        public void DeleteProduct(int productID)
-        {
-            SqlCommand sqlCommand = new SqlCommand("DELETE FROM Product WHERE ProductID = @ProductID", SqlConnection);
-            SqlConnection.Open();
-            sqlCommand.Parameters.AddWithValue("ProductID", productID);
-            try
-            {
-                sqlCommand.ExecuteNonQuery();
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
-            finally
-            {
-                SqlConnection.Close();
-            }
-        }
+        //public void DeleteProduct(int productID)
+        //{
+        //    SqlCommand sqlCommand = new SqlCommand("DELETE FROM Product WHERE ProductID = @ProductID", SqlConnection);
+        //    SqlConnection.Open();
+        //    sqlCommand.Parameters.AddWithValue("ProductID", productID);
+        //    try
+        //    {
+        //        sqlCommand.ExecuteNonQuery();
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        Console.WriteLine(exception);
+        //    }
+        //    finally
+        //    {
+        //        SqlConnection.Close();
+        //    }
+        //}
     }
 }
