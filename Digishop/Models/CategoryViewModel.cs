@@ -1,4 +1,6 @@
-﻿using WebshopLogic;
+﻿using Microsoft.Build.Framework;
+using System.ComponentModel;
+using WebshopLogic;
 
 namespace Digishop.Models
 {
@@ -6,6 +8,8 @@ namespace Digishop.Models
     {
 
         public int CategoryID { get; set; }
+        [Required]
+        [DisplayName("Categorie naam:")]
         public string CategoryName { get; set; }
 
         public CategoryViewModel(Category category)

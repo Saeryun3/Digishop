@@ -7,9 +7,9 @@ using WebshopInterface;
 
 namespace WebshopLogic.Helper
 {
-    public static class CatergoryConvertor
+    public static class CategoryConvertor
     {
-        public static CategoryDTO CatergoryToDTO(Category category)// let op spelling
+        public static CategoryDTO CategoryToDTO(Category category)// let op spelling
         {
             return new CategoryDTO(category.CategoryID, category.CategoryName);
         }

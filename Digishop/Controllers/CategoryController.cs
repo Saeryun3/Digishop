@@ -1,5 +1,6 @@
 ﻿using Digishop.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using WebshopDAL;
 using WebshopLogic;
 
@@ -15,12 +16,11 @@ namespace Digishop.Controllers
         }
         [HttpPost]
         public IActionResult CreateCategory(CategoryViewModel cvm)
-        {
-            var createcategory = categoryContainer.CreateCategory(cvm.CategoryName);
-            category.CategoryID = cvm.CategoryID;
+        {           
             category.CategoryName = cvm.CategoryName;
-            categoryContainer.CreateCategory(category.CategoryName);
-            return RedirectToAction("Index", "home");
+            var createcategory = categoryContainer.CreateCategory(category.CategoryName);
+
+            return RedirectToAction("Createcategory", "Category");
         }
         [HttpGet]
         public IActionResult CreateCategory()

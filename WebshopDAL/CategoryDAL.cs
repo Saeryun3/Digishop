@@ -1,20 +1,25 @@
-﻿using System.Data.SqlClient;
+﻿using System.ComponentModel;
+using System.Data.SqlClient;
 using WebshopInterface;
 
 namespace WebshopDAL
 {
     public class CategoryDAL : ICategoryContainer
     {
-        SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User Id=dbi479257;Password=Dagal555;");
+        SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257_webshopdtb;User Id=dbi479257_webshopdtb;Password=Dagal555");
 
         public bool CreateCategory(string categoryname)
         {
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CatergoryName)", SqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CategoryName)", SqlConnection);
             SqlConnection.Open();
             sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
             try
             {
-                sqlCommand.ExecuteNonQuery();
+                var result = sqlCommand.ExecuteNonQuery();
+                if (result > 0)
+                {
+                    return true;
+                }               
             }
             catch (Exception exception)
             {
@@ -24,7 +29,7 @@ namespace WebshopDAL
             {
                 SqlConnection.Close();
             }
-                return true;
+            return false;
         }
             public  List<CategoryDTO> GetAllCategories()
             {
@@ -39,8 +44,8 @@ namespace WebshopDAL
                     {
                         Result.Add(new CategoryDTO()
                         {
-                            CategoryID = (int)reader["CategoryID"],
-                            CategoryName = (string)reader["CategoyName"],
+                            CategoryID = (int) reader["CategoryID"],
+                            CategoryName = (string) reader["CategoryName"],
                         });
                     };
                 }

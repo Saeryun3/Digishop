@@ -11,23 +11,23 @@ namespace WebshopDAL
 {
     public class ProductDAL : IProductContainer
     {
-       SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257;User Id=dbi479257;Password=Dagal555;");
+        SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257_webshopdtb;User Id=dbi479257_webshopdtb;Password=Dagal555");
 
 
         public void CreateProduct(ProductDTO productDTO)
         {
             // query create category
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(ProductName, ProductDescription, ProductPrice, ProductImage, CategoryID) VALUES (@ProductName, ProductDescription, ProductPrice, ProductImage, CategoryID)", SqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(CategoryID, ProductName, ProductPrice, ProductDescription, ProductImage) VALUES (@CategoryID, @ProductName, @ProductPrice, @ProductDescription, @ProductImage)", SqlConnection);
             SqlConnection.Open();
-            sqlCommand.Parameters.AddWithValue("ProductName", productDTO.ProductName);
-            sqlCommand.Parameters.AddWithValue("ProductDescription", productDTO.ProductDescription);
-            sqlCommand.Parameters.AddWithValue("ProductPrice", productDTO.ProductPrice);
-            sqlCommand.Parameters.AddWithValue("ProductImage", productDTO.ProductImage);
-            sqlCommand.Parameters.AddWithValue("CategoryID", productDTO.CategoryID);
+            sqlCommand.Parameters.AddWithValue("@CategoryID", productDTO.CategoryID);
+            sqlCommand.Parameters.AddWithValue("@ProductName", productDTO.ProductName);
+            sqlCommand.Parameters.AddWithValue("@ProductDescription", productDTO.ProductDescription);
+            sqlCommand.Parameters.AddWithValue("@ProductPrice", productDTO.ProductPrice);
+            sqlCommand.Parameters.AddWithValue("@ProductImage", productDTO.ProductImage);
             try
             {
-                // Execute sqlqueri return amount rows effected
                 sqlCommand.ExecuteNonQuery();
+                // Execute sqlquery return amount rows effected
             }
             catch (Exception exception)
             {
@@ -35,7 +35,7 @@ namespace WebshopDAL
             }
             finally
             {
-                SqlConnection.Close();                
+                SqlConnection.Close();
             }
         }
         public List<ProductDTO> GetAllProduct()

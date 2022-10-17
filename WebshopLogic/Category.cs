@@ -16,6 +16,12 @@ namespace WebshopLogic
         {
 
         }
+        // constructor test
+        public Category(int categoryID, string categoryName)
+        {
+            CategoryID = categoryID;
+            CategoryName = categoryName;
+        }
        //public CategoryDTO toDTO() you can also convert to dto with this function
             //{
             //    return new CategoryDTO(CategoryID, CategoryName);

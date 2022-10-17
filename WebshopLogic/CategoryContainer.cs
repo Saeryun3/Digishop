@@ -20,10 +20,8 @@ namespace WebshopLogic
         public bool CreateCategory(string categoryname)
         {
             _iCategoryContainer.CreateCategory(categoryname);
-            return true;    
-            //CategoryDTO categoryDTO = CatergoryConvertor.CatergoryToDTO(); need one datetype
-            //Container category1 = new Container(); wrong
-            //categoryDTO.CategoryName = category1.CategoryName; wrong
+            return true;
+            //CategoryDTO categoryDTO = CategoryConvertor.CategoryToDTO(); need one datetype           
         }
         public List<Category> GetAllCategories()
         {
