@@ -18,16 +18,16 @@ namespace WebshopDAL
         {
             // query create category
             SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(CategoryID, ProductName, ProductPrice, ProductDescription, ProductImage) VALUES (@CategoryID, @ProductName, @ProductPrice, @ProductDescription, @ProductImage)", SqlConnection);
-            SqlConnection.Open();
-            sqlCommand.Parameters.AddWithValue("@CategoryID", productDTO.CategoryID);
-            sqlCommand.Parameters.AddWithValue("@ProductName", productDTO.ProductName);
-            sqlCommand.Parameters.AddWithValue("@ProductDescription", productDTO.ProductDescription);
-            sqlCommand.Parameters.AddWithValue("@ProductPrice", productDTO.ProductPrice);
-            sqlCommand.Parameters.AddWithValue("@ProductImage", productDTO.ProductImage);
             try
             {
-                sqlCommand.ExecuteNonQuery();
+                SqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@CategoryID", productDTO.CategoryID);
+                sqlCommand.Parameters.AddWithValue("@ProductName", productDTO.ProductName);
+                sqlCommand.Parameters.AddWithValue("@ProductDescription", productDTO.ProductDescription);
+                sqlCommand.Parameters.AddWithValue("@ProductPrice", productDTO.ProductPrice);
+                sqlCommand.Parameters.AddWithValue("@ProductImage", productDTO.ProductImage);
                 // Execute sqlquery return amount rows effected
+                sqlCommand.ExecuteNonQuery();
             }
             catch (Exception exception)
             {
@@ -89,6 +89,29 @@ namespace WebshopDAL
                 SqlConnection.Close();
             }
             return dateTime;
+        }
+
+        public bool ExistProduct(string productName)
+        {
+            bool output = false;
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE ProductName = @ProductName", SqlConnection);
+            sqlCommand.Parameters.AddWithValue("ProductName", productName);
+            try
+            {
+                SqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+                output = result.HasRows;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return output;
         }
 
         //public void DeleteProduct(int productID)

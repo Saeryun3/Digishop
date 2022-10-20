@@ -1,52 +1,39 @@
 ﻿@model Digishop.Models.ProductViewModel
 
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>CreateProduct</title>
-</head>
-<body>
-
 <h4>ProductViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="CreateProduct">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>  
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="ProductName" class="control-label"></label>
-                <input asp-for="ProductName" class="form-control" required/>
+                <label asp-for="ProductName" class="control-label">Product naam:</label>
+                <input asp-for="ProductName" class="form-control" required />
                 <span asp-validation-for="ProductName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductPrice" class="control-label"></label>
-                <input asp-for="ProductPrice" class="form-control" required/>
+                <label asp-for="ProductPrice" class="control-label">Product prijs:</label>
+                <input asp-for="ProductPrice" class="form-control" required />
                 <span asp-validation-for="ProductPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductDescription" class="control-label"></label>
-                <input asp-for="ProductDescription" class="form-control" required/>
+                <label asp-for="ProductDescription" class="control-label">Beschrijving:</label>
+                <input asp-for="ProductDescription" class="form-control" required />
                 <span asp-validation-for="ProductDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ProductImage" class="control-label"></label>
-                <input asp-for="ProductImage" class="form-control" required/>
+                <label asp-for="ProductImage" class="control-label">Afbeeldingslink:</label>
+                <input asp-for="ProductImage" class="form-control" required />
                 <span asp-validation-for="ProductImage" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryID" class="control-label"></label>
-                    @Html.DropDownListFor(n => Model.CategoryID,
-                    new SelectList(Model.categories, "CategoryID", "CategoryName"))
+                <label asp-for="CategoryID" class="control-label">Kies categorie:</label>
+                @Html.DropDownListFor(pvm => Model.CategoryID,
+                new SelectList(Model.categories, "CategoryID", "CategoryName"))
                 <span asp-validation-for="CategoryID" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Maak aan" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -55,9 +42,28 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+@{
+    if (ViewBag.Message != null)
+    {
+        <div>
+            @ViewBag.Message
+        </div>
+    }
+}
+
+ 
+@if (Model.products != null)
+{
+    @foreach (var cvm in Model.products)
+    {
+        <tr>
+            <td>@cvm.ProductName</td>
+        </tr>
+    }
+}
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-</body>
-</html>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }

@@ -11,9 +11,10 @@ namespace Digishop.Models
         [Required]
         [DisplayName("Categorie naam:")]
         public string CategoryName { get; set; }
+        public List<Category> categories { get; set; }
 
         public CategoryViewModel(Category category)
-        {           
+        {   if (category == null) return;
             this.CategoryID = category.CategoryID;  
             this.CategoryName = category.CategoryName;
         }

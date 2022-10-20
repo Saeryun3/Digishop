@@ -8,24 +8,33 @@ namespace Digishop.Controllers
 {
     public class CategoryController : Controller
     {
-        Category category = new Category();
         CategoryContainer categoryContainer = new CategoryContainer(new CategoryDAL());
-        public IActionResult Index()
-        {
-            return View();
-        }
         [HttpPost]
         public IActionResult CreateCategory(CategoryViewModel cvm)
-        {           
-            category.CategoryName = cvm.CategoryName;
-            var createcategory = categoryContainer.CreateCategory(category.CategoryName);
+        {
+            if (!categoryContainer.CategoryExist(cvm.CategoryName))
+            {
+                var createcategory = categoryContainer.CreateCategory(cvm.CategoryName);
+            }
+            else
+            {
+                ViewBag.Message = "already exist";
 
-            return RedirectToAction("Createcategory", "Category");
+            }
+            return View(new CategoryViewModel(null)
+            {
+                categories = categoryContainer.GetAllCategories()
+            });
+
         }
         [HttpGet]
         public IActionResult CreateCategory()
         {
-            return View();
+            return View(new CategoryViewModel(null)
+            {
+                categories = categoryContainer.GetAllCategories()
+            });
         }
+
     }
 }

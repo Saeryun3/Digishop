@@ -30,6 +30,11 @@ namespace WebshopLogic
             }
             return products;
         }
+        public bool ExistProduct(string productName)
+        {
+            bool result = _iproductContainer.ExistProduct(productName);
+            return result;
+        }
 
         public DateTime ArchiveProduct(int productID)
         {
@@ -37,6 +42,7 @@ namespace WebshopLogic
             _iproductContainer.ArchiveProduct(productID, now);
             return DateTime.Now;
         }
+        // to do: check if product exist
         //public void DeleteProduct(int productID)
         //{
         //    _iproductContainer.DeleteProduct(productID);

@@ -10,6 +10,7 @@ namespace WebshopInterface
     {      
         void CreateProduct(ProductDTO product); // ask using webinterface
         List<ProductDTO> GetAllProduct();
+        bool ExistProduct(string productName);
         DateTime ArchiveProduct(int productID, DateTime dateTime);
     }
 }

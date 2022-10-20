@@ -21,6 +21,7 @@ namespace Digishop.Models
         [Required]
         public int CategoryID { get; set; }
         public List<Category> categories { get; set; }
+        public List<Product> products { get; set; }
 
         public ProductViewModel(Product product)
         {

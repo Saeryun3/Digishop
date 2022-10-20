@@ -10,20 +10,25 @@ namespace Digishop.Controllers
         Product product = new Product();
         ProductContainer productContainer = new ProductContainer(new ProductDAL());
         CategoryContainer categoryContainer = new CategoryContainer(new CategoryDAL()); 
-        public IActionResult Index()
-        {
-            return View();
-        }
+   
         [HttpPost]
         public IActionResult CreateProduct(ProductViewModel pvm)
         {
-            product.ProductName = pvm.ProductName;
-            product.ProductPrice = pvm.ProductPrice;
-            product.ProductDescription = pvm.ProductDescription;
-            product.ProductImage = pvm.ProductImage;
-            product.CategoryID = pvm.CategoryID;
-            productContainer.CreateProduct(product);
-            return RedirectToAction("CreateProduct", "Product");
+            if (!productContainer.ExistProduct(pvm.ProductName))
+            {
+                product.ProductName = pvm.ProductName;
+                product.ProductPrice = pvm.ProductPrice;
+                product.ProductDescription = pvm.ProductDescription;
+                product.ProductImage = pvm.ProductImage;
+                product.CategoryID = pvm.CategoryID;
+                productContainer.CreateProduct(product);
+            }
+            else
+            {
+                ViewBag.Message = "already exist";
+            }
+            return View(new ProductViewModel(categoryContainer.GetAllCategories()));
+
         }
         [HttpGet]
         public IActionResult CreateProduct()

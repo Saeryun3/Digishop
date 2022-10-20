@@ -4,6 +4,7 @@
     {
         bool CreateCategory(string categoryname);
         List<CategoryDTO> GetAllCategories();
+        bool CategoryExist(string categoryname);
         void DeleteCategoryID(int categoryID);
     }
 }

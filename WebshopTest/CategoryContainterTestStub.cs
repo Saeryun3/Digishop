@@ -42,5 +42,9 @@ namespace WebshopTest
             throw new NotImplementedException();
         }
 
+        public bool CategoryExist(string categoryname)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

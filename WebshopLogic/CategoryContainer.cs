@@ -19,8 +19,8 @@ namespace WebshopLogic
 
         public bool CreateCategory(string categoryname)
         {
-            _iCategoryContainer.CreateCategory(categoryname);
-            return true;
+           bool result = _iCategoryContainer.CreateCategory(categoryname);
+           return result;
             //CategoryDTO categoryDTO = CategoryConvertor.CategoryToDTO(); need one datetype           
         }
         public List<Category> GetAllCategories()
@@ -33,6 +33,12 @@ namespace WebshopLogic
             }
             return categories;
         }
+        public bool CategoryExist(string categoryname)
+        {            
+            bool result = _iCategoryContainer.CategoryExist(categoryname);
+            return result;
+        }
+        // to do check if category exist
         ///to do delete not sure
         public void DeleteCategoryID(int categoryID)
         {

@@ -10,15 +10,16 @@ namespace WebshopDAL
 
         public bool CreateCategory(string categoryname)
         {
+            bool output = false;
             SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CategoryName)", SqlConnection);
-            SqlConnection.Open();
             sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
             try
             {
+                SqlConnection.Open();
                 var result = sqlCommand.ExecuteNonQuery();
                 if (result > 0)
                 {
-                    return true;
+                    output = true;
                 }               
             }
             catch (Exception exception)
@@ -29,15 +30,15 @@ namespace WebshopDAL
             {
                 SqlConnection.Close();
             }
-            return false;
+            return output;
         }
             public  List<CategoryDTO> GetAllCategories()
             {
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category", SqlConnection);
-                SqlConnection.Open();
                 List<CategoryDTO> Result = new List<CategoryDTO>();
                 try
                 {
+                SqlConnection.Open();
                     SqlDataReader reader = sqlCommand.ExecuteReader();
                     // zet het resultaat in de reader
                     while (reader.Read())
@@ -59,10 +60,32 @@ namespace WebshopDAL
                 }
                 return Result;
             } 
+        public bool CategoryExist(string categoryname)
+        {
+            bool output = false;    
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category WHERE CategoryName = @CategoryName", SqlConnection);
+            sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
+            try
+            {
+                SqlConnection.Open();
+                var result = sqlCommand.ExecuteReader();
+                output = result.HasRows;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return output;
+        }
         public void DeleteCategoryID(int categoryID)
         {
             throw new NotImplementedException();
         }
+
     }
     
 }
