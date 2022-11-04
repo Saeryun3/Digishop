@@ -70,6 +70,37 @@ namespace WebshopDAL
             }
             return Result;
         }
+        public List<ProductDTO> GetTop8product()
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product", SqlConnection);
+            SqlConnection.Open();
+            List<ProductDTO> Result = new List<ProductDTO>();
+            try
+            {
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    Result.Add(new ProductDTO()
+                    {
+                        ProductID = (int)reader["ProductID"],
+                        ProductName = (string)reader["ProductName"],
+                        ProductPrice = (double)reader["ProductPrice"],
+                        ProductDescription = (string)reader["ProductDescription"],
+                        ProductImage = (string)reader["ProductImage"],                        
+                        CategoryID = (int)reader["CategoryID"],
+                    });
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return Result;
+        }
         public DateTime ArchiveProduct(int productID, DateTime dateTime)
         {
             SqlCommand sqlCommand = new SqlCommand("UPDATE Product SET Delete = @dateTime WHERE ProductID = @ProductID", SqlConnection);
@@ -113,6 +144,7 @@ namespace WebshopDAL
             }
             return output;
         }
+
 
         //public void DeleteProduct(int productID)
         //{

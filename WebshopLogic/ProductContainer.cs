@@ -30,6 +30,16 @@ namespace WebshopLogic
             }
             return products;
         }
+        public List<Product> GetTop8product()
+        {
+            List<ProductDTO> productDTOs = _iproductContainer.GetTop8product();
+            List<Product> products = new List<Product>();
+            foreach (ProductDTO productDTO in productDTOs)
+            {
+                products.Add(new Product(productDTO));
+            }
+            return products;
+        }
         public bool ExistProduct(string productName)
         {
             bool result = _iproductContainer.ExistProduct(productName);

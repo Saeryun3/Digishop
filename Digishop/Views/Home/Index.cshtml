@@ -1,8 +1,102 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<ProductViewModel>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UFT-8" />
+    <meta http-equiv="X-UA-Compatible" content=" IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digishop</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+</head>
+<body>
+
+    <section id="header">
+        <a href="#"><img src="images/LogoV2.png" class="logo" alt="" /></a>
+
+        <div>
+            <ul id="navbar">
+                <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a href="">Shop</a></li>
+                <li><a href="">Over Ons</a></li>
+                <li><a href="">Contact</a></li>
+                <li><a href=""><i class="far fa-shopping-bag"></i></a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="hero">
+        <h4>Aanbieding</h4>
+        <h2>Super lage prijzen</h2>
+        <h1>Op bijna alle artikelen</h1>
+        <p>Bespaar meer dan 70% op je volgende aankoop</p>
+        <button>Bestel Nu</button>
+    </section>
+
+    <section id="feature" class="section-p1">
+        <h2>De 6 zékerheden van Digishop</h2>
+        <div class="box-container">
+            <div class="fe-box">
+                <img src="images/features/f1.png" alt="" />
+                <h6>Gratis verzending</h6>
+            </div>
+            <div class="fe-box">
+                <img src="images/features/f2.png" alt="" />
+                <h6>Bestel online</h6>
+            </div>
+            <div class="fe-box">
+                <img src="images/features/f3.png" alt="" />
+                <h6>Euro's goedkoper</h6>
+            </div>
+            <div class="fe-box">
+                <img src="images/features/f4.png" alt="" />
+                <h6>Aanbiedingen</h6>
+            </div>
+            <div class="fe-box">
+                <img src="images/features/f5.png" alt="" />
+                <h6>Service met een glimlach</h6>
+            </div>
+            <div class="fe-box">
+                <img src="images/features/f6.png" alt="" />
+                <h6>24/7 Service</h6>
+            </div>
+        </div>
+
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Uitgelichte Producten</h2>
+        <p>Nieuw</p>
+        <div class="pro-container">
+                @foreach (ProductViewModel pvm in Model)
+                {
+                    <div class="pro">
+                    <img src="@pvm.ProductImage" alt="" />
+                    <div class="des">
+                        <h5>@pvm.ProductName</h5>
+                        <div class="star">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>€@pvm.ProductPrice</h4>
+                    </div>
+                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                    </div>
+
+                }
+        </div>
+    </section>
+
+
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>
