@@ -11,6 +11,6 @@ namespace WebshopInterface
         bool CreateUser(UserDTO userDTO);
         bool UserExist(UserDTO userDTO);
         bool UserExistsByEmailAndPassword(string email, string password);
-        UserDTO GetUser(UserDTO userDTO);
+        UserDTO GetUserByEmailAndPassword(UserDTO userDTO);
     }
 }

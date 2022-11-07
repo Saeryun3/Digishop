@@ -18,7 +18,7 @@ namespace WebshopDAL
             sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
             sqlCommand.Parameters.AddWithValue("@Password", userDTO.Password);
             sqlCommand.Parameters.AddWithValue("@FirstName", userDTO.FirstName);
-            sqlCommand.Parameters.AddWithValue("@LastName", userDTO.LastName);            
+            sqlCommand.Parameters.AddWithValue("@LastName", userDTO.LastName);
             sqlCommand.Parameters.AddWithValue("@IsAdmin", userDTO.IsAdmin);
             sqlConnection.Open();
             try
@@ -84,6 +84,35 @@ namespace WebshopDAL
         public UserDTO GetUser(UserDTO userDTO)
         {
             throw new NotImplementedException();
+        }
+
+        public UserDTO GetUserByEmailAndPassword(UserDTO userDTO)
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email AND Password = @Password", sqlConnection);
+            sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
+            sqlCommand.Parameters.AddWithValue("@Password", userDTO.Password);
+
+            sqlConnection.Open();
+            try
+            {
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    userDTO.UserID = (int)reader["UserID"];
+                    userDTO.Email = (string)reader["Email"];
+                    userDTO.Password = (string)reader["Password"];
+                    userDTO.FirstName = (string)reader["FirstName"];
+
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            sqlConnection.Close();
+            return userDTO;
         }
     }
 }

@@ -36,7 +36,11 @@ namespace WebshopLogic
         {
             return _iuserContainer.UserExistsByEmailAndPassword(user.Email, user.Password);
         }
-
+        public User GetUserByEmailAndPassword(User user)
+        {
+            UserDTO userDTO = UserConvertor.UserToDTO(user);
+            return new User(_iuserContainer.GetUserByEmailAndPassword(userDTO));
+        }
         //public User GetUser(User user)
         //{
         //    return new User(_iuserContainer.GetUser(user.Email, user.Password));//GetUserByEmailAndPassword(user.Email, user.Password));
