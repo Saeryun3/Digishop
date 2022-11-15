@@ -32,9 +32,22 @@ namespace WebshopTest
             categories.Add(new CategoryDTO(3,categoryname));
             return true;
         }
+
         public List<CategoryDTO> GetAllCategories()
         {
             return categories;
+        }
+
+        public bool CategoryExist(string categoryname)
+        {
+            foreach (CategoryDTO category in categories)
+            {
+                if (category.CategoryName == categoryname)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public void DeleteCategoryID(int categoryID)
@@ -42,7 +55,7 @@ namespace WebshopTest
             throw new NotImplementedException();
         }
 
-        public bool CategoryExist(string categoryname)
+        public string GetCategroryNameByCategoryID(int categoryID)
         {
             throw new NotImplementedException();
         }

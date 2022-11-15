@@ -38,7 +38,7 @@ namespace WebshopDAL
                 SqlConnection.Close();
             }
         }
-        public List<ProductDTO> GetAllProduct()
+        public List<ProductDTO> GetAllProducts()
         {
             SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product", SqlConnection);
             SqlConnection.Open();
@@ -55,7 +55,6 @@ namespace WebshopDAL
                         ProductPrice = (double)reader["ProductPrice"],
                         ProductDescription = (string)reader["ProductDescription"],
                         ProductImage = (string)reader["ProductImage"],
-                        Delete = (DateTime)reader["Delete"],
                         CategoryID = (int)reader["CategoryID"],
                     });
                 }
@@ -86,7 +85,7 @@ namespace WebshopDAL
                         ProductName = (string)reader["ProductName"],
                         ProductPrice = (double)reader["ProductPrice"],
                         ProductDescription = (string)reader["ProductDescription"],
-                        ProductImage = (string)reader["ProductImage"],                        
+                        ProductImage = (string)reader["ProductImage"],
                         CategoryID = (int)reader["CategoryID"],
                     });
                 }
@@ -143,6 +142,40 @@ namespace WebshopDAL
                 SqlConnection.Close();
             }
             return output;
+        }
+
+        public List<ProductDTO> GetAllProductsByCategoryID(int categoryID)
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE CategoryID = @CategoryID", SqlConnection);
+            sqlCommand.Parameters.AddWithValue("CategoryID", categoryID);
+            List<ProductDTO> products = new List<ProductDTO>();
+            SqlConnection.Open();
+            try
+            {
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    products.Add(new ProductDTO()
+                    {
+                        ProductID = (int)reader["ProductID"],
+                        ProductName = (string)reader["ProductName"],
+                        ProductPrice = (double)reader["ProductPrice"],
+                        ProductDescription = (string)reader["ProductDescription"],
+                        ProductImage = (string)reader["ProductImage"],
+                        CategoryID = (int)reader["CategoryID"]
+                    });
+                }
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return products;
         }
 
 

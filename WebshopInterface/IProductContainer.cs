@@ -9,9 +9,10 @@ namespace WebshopInterface
     public interface IProductContainer
     {      
         void CreateProduct(ProductDTO product); // ask using webinterface
-        List<ProductDTO> GetAllProduct();
+        List<ProductDTO> GetAllProducts();
         List<ProductDTO> GetTop8product();
         bool ExistProduct(string productName);
         DateTime ArchiveProduct(int productID, DateTime dateTime);
+        List<ProductDTO> GetAllProductsByCategoryID(int categoryID);
     }
 }

@@ -52,7 +52,7 @@
 }
 
  
-@if (Model.products != null)
+@*@if (Model.products != null)
 {
     @foreach (var cvm in Model.products)
     {
@@ -61,6 +61,21 @@
         </tr>
     }
 }
+*@
+<table class="table">
+
+    <tbody>
+        @if (Model.products != null)
+        {
+            @foreach (var pvm in Model.products)
+            {
+                <tr>
+                    <td>@pvm.ProductName</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
 
 @section Scripts {
     @{

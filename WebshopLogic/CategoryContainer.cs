@@ -23,6 +23,11 @@ namespace WebshopLogic
            return result;
             //CategoryDTO categoryDTO = CategoryConvertor.CategoryToDTO(); need one datetype           
         }
+
+        public string GetCategoryNameByCategoryID(int id)
+        {
+            return _iCategoryContainer.GetCategroryNameByCategoryID(id);
+        }
         public List<Category> GetAllCategories()
         {
             List<CategoryDTO> categorieDTOs = _iCategoryContainer.GetAllCategories();

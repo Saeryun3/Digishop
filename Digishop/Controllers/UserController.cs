@@ -22,13 +22,14 @@ namespace Digishop.Controllers
                 if (!userContainer.UserExist(user))
                 {
                     userContainer.CreateUser(user);
-                    return View();
+                    ViewBag.Message = "Het account is succesvol aangemaakt";
                 }
                 else
                 {
                     ViewBag.Message = "Deze gebruiker heeft al een account";
+                    //return RedirectToAction("CreateUser", "User");
                 }
-            return RedirectToAction("Index", "Home");
+            return View();
         }
         [HttpGet]
         public IActionResult CreateUser()
@@ -81,7 +82,7 @@ namespace Digishop.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("IsAdmin");
-            HttpContext.Session.Remove("Bwm6TXkr7P");
+            HttpContext.Session.Remove("UserID");
             return RedirectToAction("Index", "Home");
         }
     }

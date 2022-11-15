@@ -20,9 +20,9 @@ namespace WebshopLogic
             ProductDTO productDTO = ProductConvertor.ProductToDTO(product);
             _iproductContainer.CreateProduct(productDTO); 
         }
-        public List<Product> GetAllProduct()
+        public List<Product> GetAllProducts()
         {
-            List<ProductDTO> productDTOs = new List<ProductDTO>();
+            List<ProductDTO> productDTOs = _iproductContainer.GetAllProducts();
             List<Product> products = new List<Product>();
             foreach (ProductDTO productDTO in productDTOs)
             {
@@ -52,6 +52,17 @@ namespace WebshopLogic
             _iproductContainer.ArchiveProduct(productID, now);
             return DateTime.Now;
         }
+
+        public List<Product> GetAllProductsByCategoryID(int categoryID)
+        {
+            List<ProductDTO> productDTOs = _iproductContainer.GetAllProductsByCategoryID(categoryID);
+            List<Product> products = new List<Product>();
+            foreach (ProductDTO productDTO in productDTOs)
+            {
+                products.Add(new Product(productDTO));
+            }
+            return products;
+        }
         // to do: check if product exist
         //public void DeleteProduct(int productID)
         //{
@@ -60,7 +71,7 @@ namespace WebshopLogic
         //to do
         //public List<_iproductContaier> GetAllProductByCategory(string category)
         //{
-        //    return GetAllProduct();
+        //    return GetAllProducts();
         //}
     }
 }

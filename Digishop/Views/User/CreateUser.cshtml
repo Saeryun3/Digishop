@@ -58,5 +58,14 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
+    @{
+        if (ViewBag.Message != null)
+        {
+                <div>
+                    @ViewBag.Message
+                </div>
+        }
+    }
 </body>
 </html>

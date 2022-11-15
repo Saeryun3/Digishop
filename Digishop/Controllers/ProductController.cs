@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using WebshopDAL;
 using WebshopLogic;
+using WebshopLogic.Helper;
 
 namespace Digishop.Controllers
 {
@@ -10,6 +11,7 @@ namespace Digishop.Controllers
         Product product = new Product();
         ProductContainer productContainer = new ProductContainer(new ProductDAL());
         CategoryContainer categoryContainer = new CategoryContainer(new CategoryDAL()); 
+        ProductViewModel productViewModel = new ProductViewModel();
    
         [HttpPost]
         public IActionResult CreateProduct(ProductViewModel pvm)
@@ -33,7 +35,9 @@ namespace Digishop.Controllers
         [HttpGet]
         public IActionResult CreateProduct()
         {
-            return View (new ProductViewModel(categoryContainer.GetAllCategories()));
+            ProductViewModel pvm = new ProductViewModel(categoryContainer.GetAllCategories());
+            pvm.products = productContainer.GetAllProducts();
+            return View(pvm);
         }
     }
 }

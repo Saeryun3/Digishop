@@ -10,6 +10,7 @@ namespace Digishop.Controllers
     {
         //Product product = new Product();
         ProductContainer productContainer = new ProductContainer(new ProductDAL());
+        CategoryContainer categoryContainer = new CategoryContainer(new CategoryDAL()); 
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -19,20 +20,30 @@ namespace Digishop.Controllers
 
         public IActionResult Index()
         {
-            List<ProductViewModel> pvms = new List<ProductViewModel>();
-            List<Product> products = productContainer.GetTop8product();
-            foreach (Product product in products)
+            HomeViewModel hvm = new HomeViewModel();
+            hvm.products = productContainer.GetTop8product();
+            hvm.categories = categoryContainer.GetAllCategories();
+
+            if(HttpContext.Session.GetInt32("UserID") != null)
             {
-                ProductViewModel pvm = new ProductViewModel();
-                pvm.ProductID = product.ProductID;
-                pvm.ProductName = product.ProductName;
-                pvm.ProductDescription = product.ProductDescription;
-                pvm.ProductPrice = product.ProductPrice;
-                pvm.ProductImage = product.ProductImage;
-                pvm.CategoryID = product.CategoryID;
-                pvms.Add(pvm);
+                //gebruiker is ingelogd
+                hvm.signedIn = true;
+
+                //kijk of de user madmin is
+                if (HttpContext.Session.GetInt32("IsAdmin") == 1)
+                {
+                    hvm.admin = true;
+                }
+                else
+                {
+                    hvm.admin = false;
+                }
             }
-            return View(pvms);
+            else
+            {
+                hvm.signedIn = false;
+            }
+            return View(hvm);
         }
 
         public IActionResult Privacy()

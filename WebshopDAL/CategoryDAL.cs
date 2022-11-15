@@ -86,6 +86,31 @@ namespace WebshopDAL
             throw new NotImplementedException();
         }
 
+        public string GetCategroryNameByCategoryID(int categoryID)
+        {
+            SqlCommand sqlCommand = new SqlCommand("SELECT [CategoryName] FROM Category WHERE CategoryID = @CategoryID", SqlConnection);
+            sqlCommand.Parameters.AddWithValue("@CategoryID", categoryID);
+            string categoryName = "";
+            try
+            {
+                SqlConnection.Open();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                while (reader.Read())
+                {
+                    categoryName = (string)reader[0];
+                }
+                categoryName = (string)reader["CategoryName"];
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return categoryName;
+        }
     }
     
 }

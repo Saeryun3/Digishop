@@ -6,11 +6,11 @@ namespace WebshopTest
     public class CategoryTest
     {
         [TestMethod]
-        public void CreateCategoryTest()
+        public void ConstructorCategoryTest()
         {
             //arrange
             int categoryID = 1;
-            var categoryName = "TestName";
+            string categoryName = "TestName";
             //act
             var category = new Category(categoryID, categoryName);
             //assert

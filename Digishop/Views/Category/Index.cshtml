@@ -1,9 +1,11 @@
 ﻿@using WebshopLogic
-@model HomeViewModel
 
 @{
     Layout = null;
 }
+
+@model CategoryViewModel
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
@@ -23,78 +25,28 @@
         <div>
             <ul id="navbar">
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a href="">Alle Categorieën &dtrif;</a>
+                <li>
+                    <a href="">Alle Categorieën &dtrif;</a>
                     <ul class="dropdown">
-                        @foreach(Category category in Model.categories) {
+                        @foreach (Category category in Model.categories)
+                        {
                             <li><a asp-controller="Category" asp-action="Index" asp-route-categoryID="@category.CategoryID">@category.CategoryName</a></li>
                         }
                     </ul>
                 </li>
-                @if(!Model.signedIn) {
-                    <li><a asp-controller="User" asp-action="Login">Inloggen</a></li>
-                    <li><a asp-controller="User" asp-action="CreateUser">Registreren</a></li>
-                }
-
-                @if(Model.signedIn && Model.admin) {
-                    <li><a asp-controller="Category" asp-action="CreateCategory">Voeg Categorie toe</a></li>
-                    <li><a asp-controller="Product" asp-action="CreateProduct">Voeg product toe</a></li>
-                }
-
-                @if(Model.signedIn) {
-                    <li><a asp-controller="User" asp-action="Logout">Uitloggen</a></li>
-                }
-                
+                <li><a asp-controller="User" asp-action="Login">Inloggen</a></li>
+                <li><a asp-controller="User" asp-action="CreateUser">Registreren</a></li>
                 <li><a href=""><i class="far fa-shopping-bag"></i></a></li>
             </ul>
         </div>
     </section>
 
-    <section id="hero">
-        <h4>Aanbieding</h4>
-        <h2>Super lage prijzen</h2>
-        <h1>Op bijna alle artikelen</h1>
-        <p>Bespaar meer dan 70% op je volgende aankoop</p>
-        <button>Bestel Nu</button>
-    </section>
-
-    <section id="feature" class="section-p1">
-        <h2>De 6 zékerheden van Digishop</h2>
-        <div class="box-container">
-            <div class="fe-box">
-                <img src="images/features/f1.png" alt="" />
-                <h6>Gratis verzending</h6>
-            </div>
-            <div class="fe-box">
-                <img src="images/features/f2.png" alt="" />
-                <h6>Bestel online</h6>
-            </div>
-            <div class="fe-box">
-                <img src="images/features/f3.png" alt="" />
-                <h6>Euro's goedkoper</h6>
-            </div>
-            <div class="fe-box">
-                <img src="images/features/f4.png" alt="" />
-                <h6>Aanbiedingen</h6>
-            </div>
-            <div class="fe-box">
-                <img src="images/features/f5.png" alt="" />
-                <h6>Service met een glimlach</h6>
-            </div>
-            <div class="fe-box">
-                <img src="images/features/f6.png" alt="" />
-                <h6>24/7 Service</h6>
-            </div>
-        </div>
-
-    </section>
-
     <section id="product1" class="section-p1">
-        <h2>Uitgelichte Producten</h2>
-        <p>Nieuw</p>
+        <h2>@Model.CategoryName</h2>
         <div class="pro-container">
-                @foreach (Product pvm in Model.products)
-                {
-                    <div class="pro">
+            @foreach (Product pvm in Model.products)
+            {
+                <div class="pro">
                     <img src="@pvm.ProductImage" alt="" />
                     <div class="des">
                         <h5>@pvm.ProductName</h5>
@@ -108,21 +60,14 @@
                         <h4>€@pvm.ProductPrice</h4>
                     </div>
                     <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-                    </div>
+                </div>
 
-                }
+            }
         </div>
     </section>
-
-    <section id="banner" class="section-m1" >
-        <h4>Tijdelijke Aanbiedingen</h4>
-        <h2>Tot wel <span>70% korting</span> op alle muizen en toetsenborden</h2>
-        <button class="normal">Ontdek meer</button>
-    </section>
-
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="images/LogoV2.png" alt=""/>
+            <img class="logo" src="images/LogoV2.png" alt="" />
             <h4>Contact</h4>
             <p><strong>Adres:</strong> Professor Goossenlaan 1</p>
             <p><strong>Telefoon nummer</strong>(+31) 64234378</p>
@@ -144,7 +89,7 @@
             <a href="#">Verzending</a>
             <a href="#">privacybeleid</a>
             <a href="#">Algemene Voorwaarden</a>
-            <a href="#">Contact</a>            
+            <a href="#">Contact</a>
         </div>
 
         <div class="col">
@@ -156,11 +101,11 @@
             <a href="#">Help</a>
         </div>
         <div class="col install">
-        <h4>Veilig betalen</h4>
-        <img src="images/pay.png" alt="" />
+            <h4>Veilig betalen</h4>
+            <img src="images/pay.png" alt="" />
         </div>
         <div class="copyright">
-        <p>© 2022, Tech2 etc - HTML CSS Ecommerce Template</p>
+            <p>© 2022, Tech2 etc - HTML CSS Ecommerce Template</p>
         </div>
     </footer>
 

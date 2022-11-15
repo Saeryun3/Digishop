@@ -103,6 +103,7 @@ namespace WebshopDAL
                     userDTO.Email = (string)reader["Email"];
                     userDTO.Password = (string)reader["Password"];
                     userDTO.FirstName = (string)reader["FirstName"];
+                    userDTO.IsAdmin = (bool)reader["IsAdmin"];
 
                 }
             }

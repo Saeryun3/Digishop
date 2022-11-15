@@ -31,5 +31,17 @@ namespace WebshopLogic
         {
 
         }
+
+        //constructortest
+        public Product(int productID, string productName, double productPrice, string productDescription, string productImage, DateTime delete, int categoryID)
+        {
+            ProductID = productID;
+            ProductName = productName;
+            ProductPrice = productPrice;
+            ProductDescription = productDescription;
+            ProductImage = productImage;
+            Delete = delete;
+            CategoryID = categoryID;
+        }
     }
 }
