@@ -31,7 +31,17 @@ namespace WebshopLogic
         {
 
         }
-        // TODO constructortest
 
+        // constructortest
+        public Review(int reviewID, int userID, int productID, string title, string text, int rating, DateTime created)
+        {
+            ReviewID = reviewID;
+            UserID = userID;
+            ProductID = productID;
+            Title = title;
+            Text = text;
+            Rating = rating;
+            Created = created;
+        }
     }
 }

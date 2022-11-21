@@ -74,6 +74,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {

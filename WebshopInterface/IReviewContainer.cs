@@ -9,6 +9,7 @@ namespace WebshopInterface
     public  interface IReviewContainer
     {
         bool CreateReview(ReviewDTO reviewDTO);
-        int GetAllReviewsForProduct(int productID);
+        List<ReviewDTO> GetAllReviewsForProduct(int productID);
+        bool CheckIfUserHasProductReviewed(int productID, int userID);
     }
 }

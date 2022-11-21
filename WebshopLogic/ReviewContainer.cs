@@ -10,7 +10,7 @@ namespace WebshopLogic
 {
     public class ReviewContainer
     {
-        // To Do: create delete get reviews for specific product. dependecy injection
+        
         private IReviewContainer _ireviewContainer;
         public ReviewContainer(IReviewContainer ireviewcontainer)
         {
@@ -24,10 +24,24 @@ namespace WebshopLogic
             return result;
         }
 
-        public int GetAllReviewsForProduct(int productID)
+        public List<Review> GetAllReviewsForProduct(int productID)
         {
-            return _ireviewContainer.GetAllReviewsForProduct(productID);
+            List<Review> reviews = new List<Review>();
+            List<ReviewDTO> reviewDTOs = _ireviewContainer.GetAllReviewsForProduct(productID);
+            foreach (ReviewDTO reviewDTO in reviewDTOs)
+            {
+                reviews.Add(new Review(reviewDTO));
+            }
+            return reviews;  
         }
+        
+        //Todo Check review for userid and productid
+        public bool CheckIfUserHasProductReviewed(int productID, int userID)
+        {
+            return _ireviewContainer.CheckIfUserHasProductReviewed(productID, userID);            
+        }
+        // Todo Delete reviewx
+       
 
     }
 }

@@ -58,6 +58,7 @@ namespace WebshopDAL
                         CategoryID = (int)reader["CategoryID"],
                     });
                 }
+                reader.Close();
             }
             catch (Exception exception)
             {
