@@ -14,5 +14,6 @@ namespace WebshopInterface
         bool ExistProduct(string productName);
         DateTime ArchiveProduct(int productID, DateTime dateTime);
         List<ProductDTO> GetAllProductsByCategoryID(int categoryID);
+        ProductDTO GetProductID(int productID);
     }
 }

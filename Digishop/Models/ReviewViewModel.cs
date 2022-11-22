@@ -11,6 +11,8 @@ namespace Digishop.Models
         public string Text { get; set; }
         public int Rating { get; set; }
         public DateTime Created { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
 
         public ReviewViewModel(ReviewDTO reviewDTO)
         {

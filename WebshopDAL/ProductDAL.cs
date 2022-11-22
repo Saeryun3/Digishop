@@ -56,6 +56,8 @@ namespace WebshopDAL
                         ProductDescription = (string)reader["ProductDescription"],
                         ProductImage = (string)reader["ProductImage"],
                         CategoryID = (int)reader["CategoryID"],
+                        // als het niet null is pakt dan een waarde in database als wel null 1 jan 1970
+                        Delete = reader["Delete"] != DBNull.Value ? (DateTime)reader["Delete"] : DateTime.MinValue
                     });
                 }
                 reader.Close();
@@ -72,7 +74,9 @@ namespace WebshopDAL
         }
         public List<ProductDTO> GetTop8product()
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product", SqlConnection);
+            //   var Result = GetAllProducts().TakeLast(8).ToList();
+
+            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product WHERE Delete is null ", SqlConnection);
             SqlConnection.Open();
             List<ProductDTO> Result = new List<ProductDTO>();
             try
@@ -99,17 +103,18 @@ namespace WebshopDAL
             {
                 SqlConnection.Close();
             }
-            return Result;
+             return Result;
         }
         public DateTime ArchiveProduct(int productID, DateTime dateTime)
         {
-            SqlCommand sqlCommand = new SqlCommand("UPDATE Product SET Delete = @dateTime WHERE ProductID = @ProductID", SqlConnection);
-            SqlConnection.Open();
-            sqlCommand.Parameters.AddWithValue("Delete", dateTime);
-            sqlCommand.Parameters.AddWithValue("ProductID", productID);
             try
             {
+                SqlCommand sqlCommand = new SqlCommand("UPDATE Product SET [Delete] = @Delete WHERE ProductID = @ProductID", SqlConnection);
+                SqlConnection.Open();
+                sqlCommand.Parameters.AddWithValue("@Delete", dateTime);
+                sqlCommand.Parameters.AddWithValue("@ProductID", productID);
                 sqlCommand.ExecuteNonQuery();
+                
             }
             catch (Exception exception)
             {
@@ -120,6 +125,43 @@ namespace WebshopDAL
                 SqlConnection.Close();
             }
             return dateTime;
+        }
+        public ProductDTO GetProductID(int productID)
+        {
+            
+            try
+            {
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Product] WHERE ProductID = @ProductID ", SqlConnection);
+                sqlCommand.Parameters.AddWithValue("ProductID", productID);
+                SqlConnection.Open();
+              
+                ProductDTO productdto = new ProductDTO();
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                if(reader.Read())   
+                {
+
+                    productdto.ProductID = (int)reader["ProductID"];
+                    productdto.ProductName = (string)reader["ProductName"];
+                    productdto.ProductPrice = (double)reader["ProductPrice"];
+                    productdto.ProductDescription = (string)reader["ProductDescription"];
+                    productdto.ProductImage = (string)reader["ProductImage"];
+                    productdto.CategoryID = (int)reader["CategoryID"];
+                    
+                };
+                reader.Close();
+                return productdto;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+
+            
         }
 
         public bool ExistProduct(string productName)
@@ -178,6 +220,7 @@ namespace WebshopDAL
             }
             return products;
         }
+
 
 
         //public void DeleteProduct(int productID)

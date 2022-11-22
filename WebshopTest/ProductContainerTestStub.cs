@@ -19,7 +19,6 @@ namespace WebshopTest
                 ProductPrice = 19.99,
                 ProductDescription = "Product One is first version",
                 ProductImage = "Product.PNG",
-                Delete = DateTime.Now,
                 CategoryID = 1,
             };
 
@@ -30,7 +29,6 @@ namespace WebshopTest
                 ProductPrice = 39.99,
                 ProductDescription = "Product Two is the newest one",
                 ProductImage = "TestProduct.PNG",
-                Delete = DateTime.Now,
                 CategoryID = 2,
             };
             products.Add(product1);
@@ -68,7 +66,17 @@ namespace WebshopTest
         {
             throw new NotImplementedException();
         }
-        public DateTime ArchiveProduct(int productID, DateTime dateTime)
+        public int ArchiveProduct(int productID, DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        DateTime IProductContainer.ArchiveProduct(int productID, DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProductDTO GetProductID(int productID)
         {
             throw new NotImplementedException();
         }

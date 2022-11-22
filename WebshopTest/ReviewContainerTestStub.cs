@@ -25,9 +25,16 @@ namespace WebshopTest
             reviews.Add(review1);
             reviews.Add(review2);
         }
+
+        public bool CheckIfUserHasProductReviewed(int productID, int userID)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool CreateReview(ReviewDTO reviewDTO)
         {
             reviews.Add(reviewDTO);
+            return true;
         }
 
         public List<ReviewDTO> GetAllReviewsForProduct(int productID)

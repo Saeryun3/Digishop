@@ -49,8 +49,13 @@ namespace WebshopLogic
         public DateTime ArchiveProduct(int productID)
         {
             DateTime now = DateTime.Now;
-            _iproductContainer.ArchiveProduct(productID, now);
-            return DateTime.Now;
+          return  _iproductContainer.ArchiveProduct(productID, now);
+            
+        }
+        public Product GetProductID(int productID)
+        {
+            ProductDTO productDTO = _iproductContainer.GetProductID(productID);
+            return new Product(productDTO);
         }
 
         public List<Product> GetAllProductsByCategoryID(int categoryID)

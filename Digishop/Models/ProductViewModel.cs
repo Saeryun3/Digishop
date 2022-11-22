@@ -22,6 +22,7 @@ namespace Digishop.Models
         public int CategoryID { get; set; }
         public List<Category> categories { get; set; }
         public List<Product> products { get; set; }
+        public List<ReviewViewModel> reviews = new List<ReviewViewModel>();
 
         public ProductViewModel(Product product)
         {
@@ -41,6 +42,7 @@ namespace Digishop.Models
         public ProductViewModel(List<Category> categories)
         {
             this.categories = categories;
+            
         }
     }
 }

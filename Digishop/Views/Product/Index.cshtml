@@ -1,5 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ProductViewModel
 @{
+    ViewData["Title"] = "Index";
 }
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>@Model.ProductName</title>
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>@Model.ProductName</h1>
+    <img src="@Model.ProductImage" alt="" class="product1 .pro img" />
+    <h3>@Model.ProductPrice</h3>
+    <p>@Model.ProductDescription</p>
+    <div class="reviewcontainer">
+        <h2>@Model.reviews.Count Beoordelingen van onze klanten</h2>
+            @* <form asp-action="CreateReview" method="post"*@
+        <div@* class="Createreviewcontainer">*@
+               @*<textarea asp-for=" createReview string"><textarea>*@
+               @Html.HiddenFor(nvm => nvm.ProductID, new {@value = Model.ProductID})
+                <input type="submit" name="name" value="Verstuur"/>
+        <div/>
+                @*</form*@
+                @foreach (ReviewViewModel rvm in Model.reviews)
+                {
+                         <div class="ReviewItem">
+                             <p>
+                            @rvm.Title - @rvm.Text - @rvm.Rating - <b>@rvm.Firstname - @rvm.Lastname</b> - @rvm.Created
+                             </p>
+                         </div>
+                }
+    </div>
+</body>
+</html>

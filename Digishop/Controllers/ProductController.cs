@@ -1,5 +1,6 @@
 ﻿using Digishop.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using WebshopDAL;
 using WebshopLogic;
 using WebshopLogic.Helper;
@@ -37,7 +38,24 @@ namespace Digishop.Controllers
         {
             ProductViewModel pvm = new ProductViewModel(categoryContainer.GetAllCategories());
             pvm.products = productContainer.GetAllProducts();
+            //pvm.Delete = productContainer.ArchiveProduct(product.ProductID);
+
+            
             return View(pvm);
+        }
+        [HttpPost]
+        public IActionResult ArchiveProduct(ProductViewModel pvm)
+        {
+            productContainer.ArchiveProduct(pvm.ProductID);
+            return RedirectToAction(nameof(CreateProduct));
+        }
+
+        [HttpGet]
+        public IActionResult ArchiveProduct(int id )
+        {
+            Product product= productContainer.GetProductID(id);
+            ProductViewModel pvm = new ProductViewModel(product);
+            return View (pvm);
         }
     }
 }

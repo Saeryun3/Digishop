@@ -70,7 +70,13 @@
             @foreach (var pvm in Model.products)
             {
                 <tr>
-                    <td>@pvm.ProductName</td>
+                    @if (true)
+                    {
+                        
+                    }
+                    <td>@pvm.ProductName @(pvm.Delete == DateTime.MinValue ? "Archive" : "Unarchive")</td>
+                    <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-danger">Archive</a></td>
+                    <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-warning">Unarchive</a></td>
                 </tr>
             }
         }
