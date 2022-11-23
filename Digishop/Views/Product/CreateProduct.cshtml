@@ -18,7 +18,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProductDescription" class="control-label">Beschrijving:</label>
-                <input asp-for="ProductDescription" class="form-control" required />
+                <textarea asp-for="ProductDescription" class="form-control" required></textarea>
                 <span asp-validation-for="ProductDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,8 +28,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryID" class="control-label">Kies categorie:</label>
-                @Html.DropDownListFor(pvm => Model.CategoryID,
-                new SelectList(Model.categories, "CategoryID", "CategoryName"))
+                @Html.DropDownListFor(pvm => Model.CategoryID,new SelectList(Model.categories, "CategoryID", "CategoryName"))
                 <span asp-validation-for="CategoryID" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -70,10 +69,6 @@
             @foreach (var pvm in Model.products)
             {
                 <tr>
-                    @if (true)
-                    {
-                        
-                    }
                     <td>@pvm.ProductName @(pvm.Delete == DateTime.MinValue ? "Archive" : "Unarchive")</td>
                     <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-danger">Archive</a></td>
                     <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-warning">Unarchive</a></td>

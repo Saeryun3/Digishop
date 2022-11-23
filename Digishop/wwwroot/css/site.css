@@ -248,7 +248,7 @@ ul li ul .dropdown:hover {
 
 #product1 {
     text-align: center;
-    height: 90vh;
+    min-height: 90vh;
 }
 
     #product1 .pro-container {

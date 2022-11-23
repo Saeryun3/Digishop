@@ -18,12 +18,11 @@ namespace WebshopDAL
             SqlConnection.Open();
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Review](UserID, ProductID, Title, Text, Rating, Created VALUES (@UserID, @ProductID, @Title, @Text, @Rating, @Created) )", SqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Review](UserID, ProductID, Title, Text, Created) VALUES (@UserID, @ProductID, @Title, @Text, @Created)", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("@UserID", reviewDTO.UserID);
                 sqlCommand.Parameters.AddWithValue("@ProductID", reviewDTO.ProductID);
                 sqlCommand.Parameters.AddWithValue("@Title", reviewDTO.Title);
                 sqlCommand.Parameters.AddWithValue("@Text", reviewDTO.Text);
-                sqlCommand.Parameters.AddWithValue("@Rating", reviewDTO.Rating);
                 sqlCommand.Parameters.AddWithValue("@Created", reviewDTO.Created);
                 sqlCommand.ExecuteNonQuery();
                 return true;

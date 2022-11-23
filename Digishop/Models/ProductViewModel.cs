@@ -23,6 +23,8 @@ namespace Digishop.Models
         public List<Category> categories { get; set; }
         public List<Product> products { get; set; }
         public List<ReviewViewModel> reviews = new List<ReviewViewModel>();
+        public string reviewTitle { get; set; }
+        public string reviewString { get; set; }
 
         public ProductViewModel(Product product)
         {

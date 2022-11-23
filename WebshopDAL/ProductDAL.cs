@@ -76,7 +76,7 @@ namespace WebshopDAL
         {
             //   var Result = GetAllProducts().TakeLast(8).ToList();
 
-            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product WHERE Delete is null ", SqlConnection);
+            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product WHERE [Delete] is NULL", SqlConnection);
             SqlConnection.Open();
             List<ProductDTO> Result = new List<ProductDTO>();
             try

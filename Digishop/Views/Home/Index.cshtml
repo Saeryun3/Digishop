@@ -23,27 +23,32 @@
         <div>
             <ul id="navbar">
                 <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a href="">Alle Categorieën &dtrif;</a>
+                <li>
+                    <a href="">Alle Categorieën &dtrif;</a>
                     <ul class="dropdown">
-                        @foreach(Category category in Model.categories) {
+                        @foreach (Category category in Model.categories)
+                        {
                             <li><a asp-controller="Category" asp-action="Index" asp-route-categoryID="@category.CategoryID">@category.CategoryName</a></li>
                         }
                     </ul>
                 </li>
-                @if(!Model.signedIn) {
+                @if (!Model.signedIn)
+                {
                     <li><a asp-controller="User" asp-action="Login">Inloggen</a></li>
                     <li><a asp-controller="User" asp-action="CreateUser">Registreren</a></li>
                 }
 
-                @if(Model.signedIn && Model.admin) {
+                @if (Model.signedIn && Model.admin)
+                {
                     <li><a asp-controller="Category" asp-action="CreateCategory">Voeg Categorie toe</a></li>
                     <li><a asp-controller="Product" asp-action="CreateProduct">Voeg product toe</a></li>
                 }
 
-                @if(Model.signedIn) {
+                @if (Model.signedIn)
+                {
                     <li><a asp-controller="User" asp-action="Logout">Uitloggen</a></li>
                 }
-                
+
                 <li><a href=""><i class="far fa-shopping-bag"></i></a></li>
             </ul>
         </div>
@@ -92,29 +97,31 @@
         <h2>Uitgelichte Producten</h2>
         <p>Nieuw</p>
         <div class="pro-container">
-                @foreach (Product pvm in Model.products)
-                {
+            @foreach (Product pvm in Model.products)
+            {
+                <a asp-controller="Product" asp-action="Index" asp-route-id="@pvm.ProductID">
                     <div class="pro">
-                    <img src="@pvm.ProductImage" alt="" />
-                    <div class="des">
-                        <h5>@pvm.ProductName</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                        <img src="@pvm.ProductImage" alt="" />
+                        <div class="des">
+                            <h5>@pvm.ProductName</h5>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>€@pvm.ProductPrice</h4>
                         </div>
-                        <h4>€@pvm.ProductPrice</h4>
+                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                     </div>
-                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-                    </div>
+                </a>
 
-                }
+            }
         </div>
     </section>
 
-    <section id="banner" class="section-m1" >
+    <section id="banner" class="section-m1">
         <h4>Tijdelijke Aanbiedingen</h4>
         <h2>Tot wel <span>70% korting</span> op alle muizen en toetsenborden</h2>
         <button class="normal">Ontdek meer</button>
@@ -122,7 +129,7 @@
 
     <footer class="section-p1">
         <div class="col">
-            <img class="logo" src="images/LogoV2.png" alt=""/>
+            <img class="logo" src="images/LogoV2.png" alt="" />
             <h4>Contact</h4>
             <p><strong>Adres:</strong> Professor Goossenlaan 1</p>
             <p><strong>Telefoon nummer</strong>(+31) 64234378</p>
@@ -144,7 +151,7 @@
             <a href="#">Verzending</a>
             <a href="#">privacybeleid</a>
             <a href="#">Algemene Voorwaarden</a>
-            <a href="#">Contact</a>            
+            <a href="#">Contact</a>
         </div>
 
         <div class="col">
@@ -156,11 +163,11 @@
             <a href="#">Help</a>
         </div>
         <div class="col install">
-        <h4>Veilig betalen</h4>
-        <img src="images/pay.png" alt="" />
+            <h4>Veilig betalen</h4>
+            <img src="images/pay.png" alt="" />
         </div>
         <div class="copyright">
-        <p>© 2022, Tech2 etc - HTML CSS Ecommerce Template</p>
+            <p>© 2022, Tech2 etc - HTML CSS Ecommerce Template</p>
         </div>
     </footer>
 

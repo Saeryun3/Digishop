@@ -14,21 +14,24 @@
     <p>@Model.ProductDescription</p>
     <div class="reviewcontainer">
         <h2>@Model.reviews.Count Beoordelingen van onze klanten</h2>
-            @* <form asp-action="CreateReview" method="post"*@
-        <div@* class="Createreviewcontainer">*@
-               @*<textarea asp-for=" createReview string"><textarea>*@
-               @Html.HiddenFor(nvm => nvm.ProductID, new {@value = Model.ProductID})
-                <input type="submit" name="name" value="Verstuur"/>
-        <div/>
-                @*</form*@
-                @foreach (ReviewViewModel rvm in Model.reviews)
-                {
-                         <div class="ReviewItem">
-                             <p>
-                            @rvm.Title - @rvm.Text - @rvm.Rating - <b>@rvm.Firstname - @rvm.Lastname</b> - @rvm.Created
-                             </p>
-                         </div>
-                }
+        <form method="post">
+            <div class="Createreviewcontainer">
+                <label for="reviewTitle">Titel</label>
+                <input name="reviewTitle" asp-for="reviewTitle"/>
+                <label for="reviewString">Review</label>
+                <textarea name="reviewString" asp-for="reviewString"></textarea>
+                        @Html.HiddenFor(nvm => nvm.ProductID, new {@value = Model.ProductID})
+                <input type="submit" name="name" value="Verstuur" />
+                </div>
+        </form>
+        @foreach (ReviewViewModel rvm in Model.reviews)
+        {
+            <div class="ReviewItem">
+                <p>
+                    @rvm.Title - @rvm.Text - @rvm.Rating - <b>@rvm.Firstname - @rvm.Lastname</b> - @rvm.Created
+                </p>
+            </div>
+        }
     </div>
 </body>
 </html>
