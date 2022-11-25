@@ -24,22 +24,37 @@ namespace WebshopLogic
         public User(UserDTO userDTO)
         {
             this.UserID = userDTO.UserID;
-            this.Email = userDTO.Email; 
+            this.Email = userDTO.Email;
             this.Password = userDTO.Password;
             this.IsAdmin = userDTO.IsAdmin;
-            this.FirstName = userDTO.FirstName; 
+            this.FirstName = userDTO.FirstName;
             this.LastName = userDTO.LastName;
             this.PhoneNumber = userDTO.PhoneNumber;
             this.Address = userDTO.Address;
             this.HouseNumber = userDTO.HouseNumber;
             this.PostalCode = userDTO.PostalCode;
-            this.City = userDTO.City;  
+            this.City = userDTO.City;
         }
 
         public User()
         {
 
         }
+
+        //constructor test
+        public User(int userID, string email, string password, bool isAdmin, string firstName, string lastName, int phoneNumber, string address, string houseNumber, string postalCode, string city)
+        {
+            UserID = userID;
+            Email = email;
+            Password = password;
+            IsAdmin = isAdmin;
+            FirstName = firstName;
+            LastName = lastName;
+            PhoneNumber = phoneNumber;
+            Address = address;
+            HouseNumber = houseNumber;
+            PostalCode = postalCode;
+            City = city;
+        }
     }
-    
 }
