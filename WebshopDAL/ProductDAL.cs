@@ -15,12 +15,12 @@ namespace WebshopDAL
 
 
         public void CreateProduct(ProductDTO productDTO)
-        {
-            // query create category
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(CategoryID, ProductName, ProductPrice, ProductDescription, ProductImage) VALUES (@CategoryID, @ProductName, @ProductPrice, @ProductDescription, @ProductImage)", SqlConnection);
+        {            
             try
             {
                 SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO Product(CategoryID, ProductName, ProductPrice, ProductDescription, ProductImage) VALUES (@CategoryID, @ProductName, @ProductPrice, @ProductDescription, @ProductImage)", SqlConnection);
+
                 sqlCommand.Parameters.AddWithValue("@CategoryID", productDTO.CategoryID);
                 sqlCommand.Parameters.AddWithValue("@ProductName", productDTO.ProductName);
                 sqlCommand.Parameters.AddWithValue("@ProductDescription", productDTO.ProductDescription);
@@ -40,11 +40,11 @@ namespace WebshopDAL
         }
         public List<ProductDTO> GetAllProducts()
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product", SqlConnection);
-            SqlConnection.Open();
             List<ProductDTO> Result = new List<ProductDTO>();
             try
             {
+                SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product", SqlConnection);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -76,11 +76,11 @@ namespace WebshopDAL
         {
             //   var Result = GetAllProducts().TakeLast(8).ToList();
 
-            SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product WHERE [Delete] is NULL", SqlConnection);
-            SqlConnection.Open();
             List<ProductDTO> Result = new List<ProductDTO>();
             try
             {
+                SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT TOP 8 * FROM Product WHERE [Delete] is NULL", SqlConnection);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -109,8 +109,9 @@ namespace WebshopDAL
         {
             try
             {
-                SqlCommand sqlCommand = new SqlCommand("UPDATE Product SET [Delete] = @Delete WHERE ProductID = @ProductID", SqlConnection);
                 SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("UPDATE Product SET [Delete] = @Delete WHERE ProductID = @ProductID", SqlConnection);
+
                 sqlCommand.Parameters.AddWithValue("@Delete", dateTime);
                 sqlCommand.Parameters.AddWithValue("@ProductID", productID);
                 sqlCommand.ExecuteNonQuery();
@@ -127,13 +128,12 @@ namespace WebshopDAL
             return dateTime;
         }
         public ProductDTO GetProductID(int productID)
-        {
-            
+        {            
             try
             {
+                SqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [Product] WHERE ProductID = @ProductID ", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("ProductID", productID);
-                SqlConnection.Open();
               
                 ProductDTO productdto = new ProductDTO();
                 SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -159,19 +159,17 @@ namespace WebshopDAL
             finally
             {
                 SqlConnection.Close();
-            }
-
-            
+            }            
         }
 
         public bool ExistProduct(string productName)
         {
             bool output = false;
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE ProductName = @ProductName", SqlConnection);
-            sqlCommand.Parameters.AddWithValue("ProductName", productName);
             try
             {
                 SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE ProductName = @ProductName", SqlConnection);
+                sqlCommand.Parameters.AddWithValue("ProductName", productName);
                 var result = sqlCommand.ExecuteReader();
                 output = result.HasRows;
             }
@@ -189,12 +187,12 @@ namespace WebshopDAL
 
         public List<ProductDTO> GetAllProductsByCategoryID(int categoryID)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE CategoryID = @CategoryID", SqlConnection);
-            sqlCommand.Parameters.AddWithValue("CategoryID", categoryID);
             List<ProductDTO> products = new List<ProductDTO>();
-            SqlConnection.Open();
             try
             {
+                SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE CategoryID = @CategoryID", SqlConnection);
+                sqlCommand.Parameters.AddWithValue("CategoryID", categoryID);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -220,8 +218,6 @@ namespace WebshopDAL
             }
             return products;
         }
-
-
 
         //public void DeleteProduct(int productID)
         //{

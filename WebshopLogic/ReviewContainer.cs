@@ -40,7 +40,8 @@ namespace WebshopLogic
         {
             return _ireviewContainer.CheckIfUserHasProductReviewed(productID, userID);            
         }
-        // Todo Delete reviewx
+
+        // Todo Delete review
        
 
     }

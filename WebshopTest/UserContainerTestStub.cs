@@ -28,17 +28,17 @@ namespace WebshopTest
             };
             UserDTO user2 = new UserDTO()
             {
-                UserID = 1,
-                Email = "Sam@hotmail.com",
-                Password = "1234",
+                UserID = 2,
+                Email = "Sam@mail.com",
+                Password = "5678",
                 IsAdmin = false,
-                FirstName = "Sam",
-                LastName = "Dag",
-                PhoneNumber = 0644335690,
-                Address = "steenmanslaan",
-                HouseNumber = "10A",
-                PostalCode = "4030AB",
-                City = "Eindhoven",
+                FirstName = "Mas",
+                LastName = "Gad",
+                PhoneNumber = 0691268246,
+                Address = "schipkaarten",
+                HouseNumber = "1",
+                PostalCode = "1221AD",
+                City = "Tilburg",
             };
             users.Add(user1);
             users.Add(user2);

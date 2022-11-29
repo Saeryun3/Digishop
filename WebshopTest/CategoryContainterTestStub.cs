@@ -50,12 +50,20 @@ namespace WebshopTest
             return false;
         }
 
-        public void DeleteCategoryID(int categoryID)
+        // controleren
+        public string GetCategoryNameByCategoryID(int categoryID)
         {
-            throw new NotImplementedException();
+            foreach (var categoryDTO in categories)
+            {
+                if (categoryDTO.CategoryID == categoryID)
+                {
+                    return categoryDTO.CategoryName;    
+                }
+            }
+            return null;
         }
 
-        public string GetCategroryNameByCategoryID(int categoryID)
+        public void DeleteCategoryID(int categoryID)
         {
             throw new NotImplementedException();
         }

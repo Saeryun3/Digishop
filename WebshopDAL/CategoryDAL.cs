@@ -11,16 +11,16 @@ namespace WebshopDAL
         public bool CreateCategory(string categoryname)
         {
             bool output = false;
-            SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CategoryName)", SqlConnection);
-            sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
             try
             {
                 SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO Category(CategoryName) VALUES (@CategoryName)", SqlConnection);
+                sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
                 var result = sqlCommand.ExecuteNonQuery();
                 if (result > 0)
                 {
                     output = true;
-                }               
+                }
             }
             catch (Exception exception)
             {
@@ -32,42 +32,43 @@ namespace WebshopDAL
             }
             return output;
         }
-            public  List<CategoryDTO> GetAllCategories()
-            {
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category", SqlConnection);
-                List<CategoryDTO> Result = new List<CategoryDTO>();
-                try
-                {
-                SqlConnection.Open();
-                    SqlDataReader reader = sqlCommand.ExecuteReader();
-                    // zet het resultaat in de reader
-                    while (reader.Read())
-                    {
-                        Result.Add(new CategoryDTO()
-                        {
-                            CategoryID = (int) reader["CategoryID"],
-                            CategoryName = (string) reader["CategoryName"],
-                        });
-                    };
-                }
-                catch (Exception exception)
-                {
-                    Console.WriteLine(exception);
-                }
-                finally
-                {
-                    SqlConnection.Close();
-                }
-                return Result;
-            } 
-        public bool CategoryExist(string categoryname)
+        public List<CategoryDTO> GetAllCategories()
         {
-            bool output = false;    
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category WHERE CategoryName = @CategoryName", SqlConnection);
-            sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
+            List<CategoryDTO> Result = new List<CategoryDTO>();
             try
             {
                 SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category", SqlConnection);
+                SqlDataReader reader = sqlCommand.ExecuteReader();
+                // zet het resultaat in de reader
+                while (reader.Read())
+                {
+                    Result.Add(new CategoryDTO()
+                    {
+                        CategoryID = (int)reader["CategoryID"],
+                        CategoryName = (string)reader["CategoryName"],
+                    });
+                };
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return Result;
+        }
+        public bool CategoryExist(string categoryname)
+        {
+            bool output = false;
+            try
+            {
+                SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Category WHERE CategoryName = @CategoryName", SqlConnection);
+
+                sqlCommand.Parameters.AddWithValue("CategoryName", categoryname);
                 var result = sqlCommand.ExecuteReader();
                 output = result.HasRows;
             }
@@ -82,18 +83,14 @@ namespace WebshopDAL
             }
             return output;
         }
-        public void DeleteCategoryID(int categoryID)
-        {
-            throw new NotImplementedException();
-        }
 
-        public string GetCategroryNameByCategoryID(int categoryID)
+        public string GetCategoryNameByCategoryID(int categoryID)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT [CategoryName] FROM Category WHERE CategoryID = @CategoryID", SqlConnection);
-            sqlCommand.Parameters.AddWithValue("@CategoryID", categoryID);
             string categoryName = "";
             try
             {
+                SqlCommand sqlCommand = new SqlCommand("SELECT [CategoryName] FROM Category WHERE CategoryID = @CategoryID", SqlConnection);
+                sqlCommand.Parameters.AddWithValue("@CategoryID", categoryID);
                 SqlConnection.Open();
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
@@ -112,6 +109,9 @@ namespace WebshopDAL
             }
             return categoryName;
         }
+        public void DeleteCategoryID(int categoryID)
+        {
+            throw new NotImplementedException();
+        }
     }
-    
 }

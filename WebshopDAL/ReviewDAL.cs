@@ -15,9 +15,9 @@ namespace WebshopDAL
 
         public bool CreateReview(ReviewDTO reviewDTO)
         {
-            SqlConnection.Open();
             try
             {
+                SqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Review](UserID, ProductID, Title, Text, Created) VALUES (@UserID, @ProductID, @Title, @Text, @Created)", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("@UserID", reviewDTO.UserID);
                 sqlCommand.Parameters.AddWithValue("@ProductID", reviewDTO.ProductID);
@@ -40,10 +40,10 @@ namespace WebshopDAL
 
         public List<ReviewDTO> GetAllReviewsForProduct(int productID)
         {
-            SqlConnection.Open();
+            List<ReviewDTO> reviews = new List<ReviewDTO>();
             try
             {
-                List<ReviewDTO> reviews = new List<ReviewDTO>();
+                SqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Review WHERE ProductID = @ProductID", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("ProductID", productID);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
@@ -57,7 +57,6 @@ namespace WebshopDAL
                     reviews.Add(reviewDTO);
                 }
                 reader.Close();
-                return reviews;
             }
             catch (Exception exception)
             {
@@ -68,13 +67,14 @@ namespace WebshopDAL
             {
                 SqlConnection.Close();
             }
+            return reviews;
         }
         public bool CheckIfUserHasProductReviewed(int productID, int userID)
         {
-            SqlConnection.Open();
             bool output = false;
             try
             {
+                SqlConnection.Open();
                 SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Review WHERE ProductID = @ProductID AND UserID = @UserID ", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("ProductID", productID);
                 sqlCommand.Parameters.AddWithValue("UserID", userID);

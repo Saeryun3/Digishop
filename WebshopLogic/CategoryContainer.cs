@@ -26,7 +26,7 @@ namespace WebshopLogic
 
         public string GetCategoryNameByCategoryID(int id)
         {
-            return _iCategoryContainer.GetCategroryNameByCategoryID(id);
+            return _iCategoryContainer.GetCategoryNameByCategoryID(id);
         }
         public List<Category> GetAllCategories()
         {

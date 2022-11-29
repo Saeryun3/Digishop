@@ -31,6 +31,8 @@ namespace WebshopTest
                 ProductImage = "TestProduct.PNG",
                 CategoryID = 2,
             };
+
+            // 6 producten toevoegen
             products.Add(product1);
             products.Add(product2);
         }
@@ -56,27 +58,37 @@ namespace WebshopTest
         {
             return products;
         }
-
+        // controleren vanaf hier
         public List<ProductDTO> GetAllProductsByCategoryID(int categoryID)
         {
-            throw new NotImplementedException();
+            List<ProductDTO> products = new List<ProductDTO>();
+            foreach (ProductDTO productDTO in products)
+            {
+                if (productDTO.CategoryID == categoryID)
+                {
+                    products.Add(productDTO);
+                }
+            }
+            return products;
         }
-
+        public ProductDTO GetProductID(int productID)
+        {
+            foreach (ProductDTO productDTO in products)
+            {
+                if (productDTO.ProductID == productID)
+                {
+                    return productDTO;
+                }
+            }
+            return null;
+        }
+        // niet zeker en test nu 2
         public List<ProductDTO> GetTop8product()
         {
-            throw new NotImplementedException();
-        }
-        public int ArchiveProduct(int productID, DateTime dateTime)
-        {
-            throw new NotImplementedException();
+            return products.GetRange(0,8);
         }
 
-        DateTime IProductContainer.ArchiveProduct(int productID, DateTime dateTime)
-        {
-            throw new NotImplementedException();
-        }
-
-        public ProductDTO GetProductID(int productID)
+        public DateTime ArchiveProduct(int productID, DateTime dateTime)
         {
             throw new NotImplementedException();
         }

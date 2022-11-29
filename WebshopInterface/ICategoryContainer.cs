@@ -6,6 +6,6 @@
         List<CategoryDTO> GetAllCategories();
         bool CategoryExist(string categoryname);
         void DeleteCategoryID(int categoryID);
-        string GetCategroryNameByCategoryID(int categoryID);
+        string GetCategoryNameByCategoryID(int categoryID);
     }
 }

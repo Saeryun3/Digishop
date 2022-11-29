@@ -68,6 +68,19 @@ namespace WebshopTest
             Assert.AreEqual(categories[1].CategoryName, "Category2");
             Assert.AreEqual(categories[1].CategoryID, 2);// vairabele aanmaken 
         }
+
+        //controleren 
+        [TestMethod]
+        public void GetCategoryNameByCategoryIDTest()
+        {
+            //arrange
+            CategoryContainterTestStub categoryContainterTestStub = new CategoryContainterTestStub();
+            CategoryContainer categoryContainer = new CategoryContainer(categoryContainterTestStub);         
+            //act
+            var result = categoryContainer.GetCategoryNameByCategoryID(1);
+            //assert
+            Assert.AreEqual(result, "Category1");
+        }
     }
     
 }

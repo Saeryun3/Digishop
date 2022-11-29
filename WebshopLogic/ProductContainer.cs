@@ -11,14 +11,14 @@ namespace WebshopLogic
     public class ProductContainer
     {
         private IProductContainer _iproductContainer;
-            public ProductContainer(IProductContainer iproduct)
-            { 
-                this._iproductContainer = iproduct;
-            }
+        public ProductContainer(IProductContainer iproduct)
+        {
+            this._iproductContainer = iproduct;
+        }
         public void CreateProduct(Product product)
         {
             ProductDTO productDTO = ProductConvertor.ProductToDTO(product);
-            _iproductContainer.CreateProduct(productDTO); 
+            _iproductContainer.CreateProduct(productDTO);
         }
         public List<Product> GetAllProducts()
         {
@@ -49,8 +49,8 @@ namespace WebshopLogic
         public DateTime ArchiveProduct(int productID)
         {
             DateTime now = DateTime.Now;
-          return  _iproductContainer.ArchiveProduct(productID, now);
-            
+            return _iproductContainer.ArchiveProduct(productID, now);
+
         }
         public Product GetProductID(int productID)
         {

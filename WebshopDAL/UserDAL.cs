@@ -14,13 +14,13 @@ namespace WebshopDAL
 
         public bool CreateUser(UserDTO userDTO)
         {
+            sqlConnection.Open();
             SqlCommand sqlCommand = new SqlCommand("INSERT INTO [User] (Email, Password, FirstName, LastName, IsAdmin) VALUES (@Email, @Password, @FirstName, @LastName, @IsAdmin)", sqlConnection);
             sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
             sqlCommand.Parameters.AddWithValue("@Password", userDTO.Password);
             sqlCommand.Parameters.AddWithValue("@FirstName", userDTO.FirstName);
             sqlCommand.Parameters.AddWithValue("@LastName", userDTO.LastName);
             sqlCommand.Parameters.AddWithValue("@IsAdmin", userDTO.IsAdmin);
-            sqlConnection.Open();
             try
             {
                 SqlDataReader insert = sqlCommand.ExecuteReader();
@@ -35,12 +35,12 @@ namespace WebshopDAL
 
         public bool UserExist(UserDTO userDTO)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email", sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
-            sqlConnection.Open();
 
             try
             {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email", sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
                 var result = sqlCommand.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -59,13 +59,13 @@ namespace WebshopDAL
 
         public bool UserExistsByEmailAndPassword(string email, string password)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email AND Password = @Password", sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@Email", email);
-            sqlCommand.Parameters.AddWithValue("@Password", password);
 
-            sqlConnection.Open();
             try
             {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email AND Password = @Password", sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@Email", email);
+                sqlCommand.Parameters.AddWithValue("@Password", password);
                 var result = sqlCommand.ExecuteReader();
                 if (result.HasRows)
                 {
@@ -78,23 +78,22 @@ namespace WebshopDAL
                 Console.WriteLine(exception);
                 throw;
             }
-            sqlConnection.Close();
+            finally
+            {
+                sqlConnection.Close();
+            }
             return false;
-        }
-        public UserDTO GetUser(UserDTO userDTO)
-        {
-            throw new NotImplementedException();
         }
 
         public UserDTO GetUserByEmailAndPassword(UserDTO userDTO)
         {
-            SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email AND Password = @Password", sqlConnection);
-            sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
-            sqlCommand.Parameters.AddWithValue("@Password", userDTO.Password);
 
-            sqlConnection.Open();
             try
             {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM [User] WHERE Email = @Email AND Password = @Password", sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@Email", userDTO.Email);
+                sqlCommand.Parameters.AddWithValue("@Password", userDTO.Password);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
 
                 while (reader.Read())
@@ -104,7 +103,6 @@ namespace WebshopDAL
                     userDTO.Password = (string)reader["Password"];
                     userDTO.FirstName = (string)reader["FirstName"];
                     userDTO.IsAdmin = (bool)reader["IsAdmin"];
-
                 }
             }
             catch (Exception exception)
@@ -112,8 +110,15 @@ namespace WebshopDAL
                 Console.WriteLine(exception);
                 throw;
             }
-            sqlConnection.Close();
+            finally
+            {
+                sqlConnection.Close();
+            }
             return userDTO;
+        }
+        public UserDTO GetUser(UserDTO userDTO)
+        {
+            throw new NotImplementedException();
         }
     }
 }
