@@ -175,9 +175,6 @@ namespace WebshopTest
             var result = userContainer.UserExistsByEmailAndPassword(user3);
             //assert
             Assert.IsFalse(result);
-
-           //testsdfefs
-           //adaesd
         }
     }
 }
