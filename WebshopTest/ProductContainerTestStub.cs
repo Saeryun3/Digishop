@@ -29,12 +29,99 @@ namespace WebshopTest
                 ProductPrice = 39.99,
                 ProductDescription = "Product Two is the newest one",
                 ProductImage = "TestProduct.PNG",
+                CategoryID = 1,
+            }; 
+
+            ProductDTO product3 = new ProductDTO()
+            {
+                ProductID = 3,
+                ProductName = "Product three",
+                ProductPrice = 19.99,
+                ProductDescription = "Product three is the newest",
+                ProductImage = "TestsProduct.PNG",
+                CategoryID = 1,
+            };
+
+            ProductDTO product4 = new ProductDTO()
+            {
+                ProductID = 4,
+                ProductName = "Product four",
+                ProductPrice = 29.99,
+                ProductDescription = "Product four is the newest one",
+                ProductImage = "TestsssProduct.PNG",
+                CategoryID = 1,
+            };
+
+            ProductDTO product5 = new ProductDTO()
+            {
+                ProductID = 5,
+                ProductName = "Product five",
+                ProductPrice = 49.99,
+                ProductDescription = "Product five is the newest one",
+                ProductImage = "TtttestProduct.PNG",
+                CategoryID = 1,
+            };
+
+            ProductDTO product6 = new ProductDTO()
+            {
+                ProductID = 6,
+                ProductName = "Product six",
+                ProductPrice = 39.99,
+                ProductDescription = "Product six is the newest one",
+                ProductImage = "TeeeestProduct.PNG",
                 CategoryID = 2,
             };
 
-            // 6 producten toevoegen
+            ProductDTO product7 = new ProductDTO()
+            {
+                ProductID = 7,
+                ProductName = "Product seven",
+                ProductPrice = 59.99,
+                ProductDescription = "Product five is the newest one",
+                ProductImage = "TestpppppProduct.PNG",
+                CategoryID = 2,
+            };
+
+            ProductDTO product8 = new ProductDTO()
+            {
+                ProductID = 8,
+                ProductName = "Product eight",
+                ProductPrice = 79.99,
+                ProductDescription = "Product eight is the newest one",
+                ProductImage = "TestProoooduct.PNG",
+                CategoryID = 2,
+            };
+            ProductDTO product9 = new ProductDTO()
+            {
+                ProductID = 9,
+                ProductName = "Product nine",
+                ProductPrice = 89.99,
+                ProductDescription = "Product nine is the newest one",
+                ProductImage = "TestProduuuuct.PNG",
+                CategoryID = 2,
+            };
+
+            ProductDTO product10 = new ProductDTO()
+            {
+                ProductID = 10,
+                ProductName = "Product ten",
+                ProductPrice = 99.99,
+                ProductDescription = "Product ten is the newest one",
+                ProductImage = "TestProduuuuccct.PNG",
+                CategoryID = 1,
+            };
+
+
             products.Add(product1);
             products.Add(product2);
+            products.Add(product3);
+            products.Add(product4);
+            products.Add(product5);
+            products.Add(product6);
+            products.Add(product7);
+            products.Add(product8);
+            products.Add(product9);
+            products.Add(product10);
         }
 
         public void CreateProduct(ProductDTO product)
@@ -85,7 +172,13 @@ namespace WebshopTest
         // niet zeker en test nu 2
         public List<ProductDTO> GetTop8product()
         {
-            return products.GetRange(0,8);
+            products.Take(8);
+            
+            
+                return products;
+               // return products.GetRange(0, 8);
+            
+             
         }
 
         public DateTime ArchiveProduct(int productID, DateTime dateTime)

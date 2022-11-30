@@ -83,16 +83,17 @@ namespace WebshopTest
 
         public List<ReviewDTO> GetAllReviewsForProduct(int productID)
         {
-            List<ReviewDTO> reviews = new List<ReviewDTO>();
-            foreach (ReviewDTO reviewDTOs in reviews)
-            {
-                if (reviewDTOs.ProductID == productID)
-                {
-                    reviews.Add(reviewDTOs);
-                }
-            }
-            return reviews;
-            //return reviews.Where(a => a.ProductID == productID).ToList();
+
+
+            //foreach (ReviewDTO reviewDTOs in reviews)
+            //{
+            //    if (reviewDTOs.ProductID == productID)
+            //    {
+            //        return reviews;
+            //    }
+            //}
+            //return new List<ReviewDTO>();
+            return reviews.Where(reviewDTOs => reviewDTOs.ProductID == productID).ToList();
         }
         //to do delete
     }

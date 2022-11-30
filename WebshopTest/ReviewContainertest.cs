@@ -90,7 +90,21 @@ namespace WebshopTest
             ReviewContainerTestStub reviewContainerTestStub = new ReviewContainerTestStub();
             ReviewContainer reviewContainer = new ReviewContainer(reviewContainerTestStub);
             //act
+            List<Review> reviews = reviewContainer.GetAllReviewsForProduct(1);
             //assert
+            Assert.AreEqual(reviewContainerTestStub.GetAllReviewsForProduct(1).Count, reviews.Count);
+            for (int i = 0; i < reviews.Count; i++)
+            {
+                
+                    Assert.AreEqual(reviews[i].ReviewID, reviewContainerTestStub.reviews[i].ReviewID);
+                    Assert.AreEqual(reviews[i].UserID, reviewContainerTestStub.reviews[i].UserID);
+                    Assert.AreEqual(reviews[i].ProductID, reviewContainerTestStub.reviews[i].ProductID);
+                    Assert.AreEqual(reviews[i].Title, reviewContainerTestStub.reviews[i].Title);
+                    Assert.AreEqual(reviews[i].Text, reviewContainerTestStub.reviews[i].Text);
+                    Assert.AreEqual(reviews[i].Rating, reviewContainerTestStub.reviews[i].Rating);
+                    Assert.AreEqual(reviews[i].Created, reviewContainerTestStub.reviews[i].Created);
+                
+            }
         }
     }
 }

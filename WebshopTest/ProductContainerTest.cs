@@ -80,13 +80,28 @@ namespace WebshopTest
         public void GetAllProducts()
         {
             //arrange
+            ProductContainerTestStub productContainerTestStub = new ProductContainerTestStub();
+            ProductContainer productContainer = new ProductContainer(productContainerTestStub);
             //act
+            List<Product> products = productContainer.GetAllProducts();
             //assert
+            Assert.AreEqual(productContainerTestStub.GetAllProducts().Count, products.Count);
+            for (int i = 0; i < products.Count; i++)
+            {
+                Assert.AreEqual(products[i].ProductID, productContainerTestStub.products[i].ProductID);
+                Assert.AreEqual(products[i].ProductName, productContainerTestStub.products[i].ProductName);
+                Assert.AreEqual(products[i].ProductPrice, productContainerTestStub.products[i].ProductPrice);
+                Assert.AreEqual(products[i].ProductDescription, productContainerTestStub.products[i].ProductDescription);
+                Assert.AreEqual(products[i].ProductImage, productContainerTestStub.products[i].ProductImage);
+                Assert.AreEqual(products[i].CategoryID, productContainerTestStub.products[i].CategoryID);
+            }
         }
         [TestMethod]
         public void GetAllProductsByCategoryID()
         {
             //arrange
+            ProductContainerTestStub productContainerTestStub = new ProductContainerTestStub();
+            ProductContainer productContainer = new ProductContainer(productContainerTestStub);
             //act
             //assert
         }
@@ -94,15 +109,25 @@ namespace WebshopTest
         public void GetProductIDTest()
         {
             //arrange
+            ProductContainerTestStub productContainerTestStub = new ProductContainerTestStub();
+            ProductContainer productContainer = new ProductContainer(productContainerTestStub);
             //act
+            var ExpectedID = productContainer.GetProductID(1);
             //assert
+            Assert.AreEqual(1, productContainerTestStub.products[0].ProductID);
         }
         [TestMethod]
         public void GetTop8productTest()
         {
             //arrange
+            ProductContainerTestStub productContainerTestStub = new ProductContainerTestStub();
+            ProductContainer productContainer = new ProductContainer(productContainerTestStub);
             //act
+            List<Product> products = productContainer.GetTop8product();
             //assert
+            Assert.AreEqual(products.Count, productContainerTestStub.products.Count);
+            //Assert.AreEqual(products.Select(x => x.ProductID = productContainerTestStub.products);
+
         }
     }
 }
