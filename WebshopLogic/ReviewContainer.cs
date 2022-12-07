@@ -26,8 +26,8 @@ namespace WebshopLogic
 
         public List<Review> GetAllReviewsForProduct(int productID)
         {
-            List<Review> reviews = new List<Review>();
             List<ReviewDTO> reviewDTOs = _ireviewContainer.GetAllReviewsForProduct(productID);
+            List<Review> reviews = new List<Review>();
             foreach (ReviewDTO reviewDTO in reviewDTOs)
             {
                 reviews.Add(new Review(reviewDTO));

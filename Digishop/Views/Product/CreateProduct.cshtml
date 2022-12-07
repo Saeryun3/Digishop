@@ -48,7 +48,7 @@
     }
 }
 
- 
+
 @*@if (Model.products != null)
 {
     @foreach (var cvm in Model.products)
@@ -67,9 +67,16 @@
             @foreach (var pvm in Model.products)
             {
                 <tr>
-                    <td>@pvm.ProductName @(pvm.Delete == DateTime.MinValue ? "Archive" : "Unarchive")</td>
-                    <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-danger">Archive</a></td>
-                    <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-warning">Unarchive</a></td>
+                    <td>@pvm.ProductName @(pvm.Delete == DateTime.MinValue ? "(Unarchived)" : $"(Archived on: {pvm.Delete.ToShortDateString()})")</td>
+                    @if (pvm.Delete == DateTime.MinValue)
+                    {
+                        <td><a asp-action="ArchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-danger">Archive</a></td>
+                    }
+                    else
+                    {
+                        <td><a asp-action="UnarchiveProduct" asp-controller="Product" asp-route-id="@pvm.ProductID" class="btn btn-warning">Unarchive</a></td>
+                    }
+
                 </tr>
             }
         }

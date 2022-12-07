@@ -14,9 +14,13 @@ namespace Digishop.Models
         public List<Category> categories { get; set; }
         public List<Product> products { get; set; }
 
+        public bool signedIn { get; set; }
+        public bool admin { get; set; }
+
         public CategoryViewModel(Category category)
-        {   if (category == null) return;
-            this.CategoryID = category.CategoryID;  
+        {
+            if (category == null) return;
+            this.CategoryID = category.CategoryID;
             this.CategoryName = category.CategoryName;
         }
         public CategoryViewModel()

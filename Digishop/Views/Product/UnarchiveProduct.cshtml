@@ -1,0 +1,47 @@
+﻿@model Digishop.Models.ProductViewModel
+@{
+    var Name = Model.ProductName;
+}
+
+<h1>Archiveer Product</h1>
+
+
+
+
+
+<div class="container">
+
+
+
+    <div class="row">
+        <div class="col col-md-3">
+            <style>
+                .boldTextClass {
+                    font-weight: bold;
+                }
+            </style>
+            <p class="boldTextClass"> Weet je zeker of je het product wilt dearchiveren "@Name"</p>
+           
+            <form asp-action="Unarchiveproduct"  method="Post"> 
+                <div class="form-group">
+
+
+
+                    <input type="hidden" asp-for="ProductID" />
+                    @* <input type="text" class="form-control" id="BookID" name="BookID"/>*@
+                </div>
+
+                <div class="form-group">
+
+
+
+                    <label></label>
+                    <input type="submit" class="btn btn-danger" value="Unarchive" />
+                </div>
+            </form>
+
+
+
+            <div>
+            </div>
+        </div>

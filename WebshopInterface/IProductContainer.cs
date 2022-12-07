@@ -13,6 +13,7 @@ namespace WebshopInterface
         List<ProductDTO> GetTop8product();
         bool ExistProduct(string productName);
         DateTime ArchiveProduct(int productID, DateTime dateTime);
+        bool UnarchiveProduct(int productID);
         List<ProductDTO> GetAllProductsByCategoryID(int categoryID);
         ProductDTO GetProductID(int productID);
     }

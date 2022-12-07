@@ -52,6 +52,11 @@ namespace WebshopLogic
             return _iproductContainer.ArchiveProduct(productID, now);
 
         }
+
+        public bool UnarchiveProduct(int productID)
+        {
+            return _iproductContainer.UnarchiveProduct(productID);
+        }
         public Product GetProductID(int productID)
         {
             ProductDTO productDTO = _iproductContainer.GetProductID(productID);

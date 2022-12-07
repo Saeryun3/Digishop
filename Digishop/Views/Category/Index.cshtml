@@ -34,8 +34,22 @@
                         }
                     </ul>
                 </li>
-                <li><a asp-controller="User" asp-action="Login">Inloggen</a></li>
-                <li><a asp-controller="User" asp-action="CreateUser">Registreren</a></li>
+                @if (!Model.signedIn)
+                {
+                    <li><a asp-controller="User" asp-action="Login">Inloggen</a></li>
+                    <li><a asp-controller="User" asp-action="CreateUser">Registreren</a></li>
+                }
+
+                @if (Model.signedIn && Model.admin)
+                {
+                    <li><a asp-controller="Category" asp-action="CreateCategory">Voeg Categorie toe</a></li>
+                    <li><a asp-controller="Product" asp-action="CreateProduct">Voeg product toe</a></li>
+                }
+
+                @if (Model.signedIn)
+                {
+                    <li><a asp-controller="User" asp-action="Logout">Uitloggen</a></li>
+                }
                 <li><a href=""><i class="far fa-shopping-bag"></i></a></li>
             </ul>
         </div>
@@ -46,22 +60,23 @@
         <div class="pro-container">
             @foreach (Product pvm in Model.products)
             {
-                <div class="pro">
-                    <img src="@pvm.ProductImage" alt="" />
-                    <div class="des">
-                        <h5>@pvm.ProductName</h5>
-                        <div class="star">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
+                <a asp-controller="Product" asp-action="Index" asp-route-id="@pvm.ProductID">
+                    <div class="pro">
+                        <img src="@pvm.ProductImage" alt="" />
+                        <div class="des">
+                            <h5>@pvm.ProductName</h5>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h4>€@pvm.ProductPrice</h4>
                         </div>
-                        <h4>€@pvm.ProductPrice</h4>
+                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                     </div>
-                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-                </div>
-
+                </a>
             }
         </div>
     </section>

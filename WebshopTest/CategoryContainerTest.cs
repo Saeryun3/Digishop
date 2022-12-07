@@ -66,7 +66,7 @@ namespace WebshopTest
             Assert.AreEqual(categories[0].CategoryName, "Category1");
             Assert.AreEqual(categories[0].CategoryID, 1);
             Assert.AreEqual(categories[1].CategoryName, "Category2");
-            Assert.AreEqual(categories[1].CategoryID, 2);// vairabele aanmaken 
+            Assert.AreEqual(categories[1].CategoryID, 2); // vairabele aanmaken 
         }
 
         //controleren 

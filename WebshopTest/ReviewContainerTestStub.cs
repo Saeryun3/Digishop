@@ -78,22 +78,21 @@ namespace WebshopTest
                 }
             }
             return false;
-          //  return reviews.Any(a => a.UserID == userID && a.ProductID == productID);
+          //  return reviews.Any(revs => revs.UserID == userID && revs.ProductID == productID);
         }
 
         public List<ReviewDTO> GetAllReviewsForProduct(int productID)
         {
-
-
-            //foreach (ReviewDTO reviewDTOs in reviews)
-            //{
-            //    if (reviewDTOs.ProductID == productID)
-            //    {
-            //        return reviews;
-            //    }
-            //}
-            //return new List<ReviewDTO>();
-            return reviews.Where(reviewDTOs => reviewDTOs.ProductID == productID).ToList();
+            List<ReviewDTO> revs = new List<ReviewDTO>();
+            foreach (ReviewDTO reviewDTOs in reviews)
+            {
+                if (reviewDTOs.ProductID == productID)
+                {
+                    revs.Add(reviewDTOs);
+                }
+            }
+            return revs;
+          //  return reviews.Where(reviewDTOs => reviewDTOs.ProductID == productID).ToList();
         }
         //to do delete
     }

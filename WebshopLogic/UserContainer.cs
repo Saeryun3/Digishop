@@ -41,6 +41,9 @@ namespace WebshopLogic
             UserDTO userDTO = UserConvertor.UserToDTO(user);
             return new User(_iuserContainer.GetUserByEmailAndPassword(userDTO));
         }
+        // add adresgegevens 
+
+
         //public User GetUser(User user)
         //{
         //    return new User(_iuserContainer.GetUser(user.Email, user.Password));//GetUserByEmailAndPassword(user.Email, user.Password));

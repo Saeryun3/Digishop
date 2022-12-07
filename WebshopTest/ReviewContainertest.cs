@@ -102,8 +102,7 @@ namespace WebshopTest
                     Assert.AreEqual(reviews[i].Title, reviewContainerTestStub.reviews[i].Title);
                     Assert.AreEqual(reviews[i].Text, reviewContainerTestStub.reviews[i].Text);
                     Assert.AreEqual(reviews[i].Rating, reviewContainerTestStub.reviews[i].Rating);
-                    Assert.AreEqual(reviews[i].Created, reviewContainerTestStub.reviews[i].Created);
-                
+                    Assert.AreEqual(reviews[i].Created, reviewContainerTestStub.reviews[i].Created);                
             }
         }
     }

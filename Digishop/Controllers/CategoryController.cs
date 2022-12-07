@@ -17,7 +17,28 @@ namespace Digishop.Controllers
             cvm.products = productContainer.GetAllProductsByCategoryID(categoryID);
             cvm.CategoryName = categoryContainer.GetCategoryNameByCategoryID(categoryID);
             cvm.categories = categoryContainer.GetAllCategories();
-          //  cvm.products = ProductContainer
+            //  cvm.products = ProductContainer
+
+            if (HttpContext.Session.GetInt32("UserID") != null)
+            {
+                //gebruiker is ingelogd
+                cvm.signedIn = true;
+
+                //kijk of de user madmin is
+                if (HttpContext.Session.GetInt32("IsAdmin") == 1)
+                {
+                    cvm.admin = true;
+                }
+                else
+                {
+                    cvm.admin = false;
+                }
+            }
+            else
+            {
+                cvm.signedIn = false;
+            }
+
             return View(cvm);
         }
 

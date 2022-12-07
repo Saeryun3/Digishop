@@ -127,6 +127,29 @@ namespace WebshopDAL
             }
             return dateTime;
         }
+        public bool UnarchiveProduct(int productID)
+        {
+            try
+            {
+                SqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("UPDATE Product SET [Delete] = NULL WHERE ProductID = @ProductID", SqlConnection);
+
+                
+                sqlCommand.Parameters.AddWithValue("@ProductID", productID);
+                sqlCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            finally
+            {
+                SqlConnection.Close();
+            }
+            return true;
+        }
         public ProductDTO GetProductID(int productID)
         {            
             try
@@ -218,6 +241,7 @@ namespace WebshopDAL
             }
             return products;
         }
+
 
         //public void DeleteProduct(int productID)
         //{

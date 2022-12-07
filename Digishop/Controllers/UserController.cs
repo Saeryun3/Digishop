@@ -61,8 +61,7 @@ namespace Digishop.Controllers
                     loggedplayer.IsAdmin = false;
                     HttpContext.Session.SetInt32("UserID", loggedplayer.UserID);
                     return RedirectToAction("Index", "Home");   
-                }
-                
+                }                
             }
             return View();
         }

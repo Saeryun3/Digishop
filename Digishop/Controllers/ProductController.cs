@@ -81,9 +81,22 @@ namespace Digishop.Controllers
         [HttpGet]
         public IActionResult ArchiveProduct(int id )
         {
-            Product product= productContainer.GetProductID(id);
-            ProductViewModel pvm = new ProductViewModel(product);
-            return View (pvm);
+            product = productContainer.GetProductID(id);
+            productViewModel = new ProductViewModel(product);
+            return View (productViewModel);
+        }
+        [HttpPost]
+        public IActionResult UnarchiveProduct(ProductViewModel pvm)
+        {
+            productContainer.UnarchiveProduct(pvm.ProductID);
+            return RedirectToAction(nameof(CreateProduct));
+        }
+        [HttpGet]
+        public IActionResult UnarchiveProduct(int id)
+        {
+            product = productContainer.GetProductID(id);
+            productViewModel = new ProductViewModel(product);
+            return View(productViewModel);
         }
     }
 }

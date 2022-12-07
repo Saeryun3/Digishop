@@ -30,7 +30,7 @@ namespace WebshopTest
                 ProductDescription = "Product Two is the newest one",
                 ProductImage = "TestProduct.PNG",
                 CategoryID = 1,
-            }; 
+            };
 
             ProductDTO product3 = new ProductDTO()
             {
@@ -148,15 +148,15 @@ namespace WebshopTest
         // controleren vanaf hier
         public List<ProductDTO> GetAllProductsByCategoryID(int categoryID)
         {
-            List<ProductDTO> products = new List<ProductDTO>();
-            foreach (ProductDTO productDTO in products)
+            List<ProductDTO> prods = new List<ProductDTO>();
+            foreach (ProductDTO productDTOs in products)
             {
-                if (productDTO.CategoryID == categoryID)
+                if (productDTOs.CategoryID == categoryID)
                 {
-                    products.Add(productDTO);
+                    prods.Add(productDTOs);
                 }
             }
-            return products;
+            return prods;
         }
         public ProductDTO GetProductID(int productID)
         {
@@ -169,19 +169,23 @@ namespace WebshopTest
             }
             return null;
         }
+
+
         // niet zeker en test nu 2
         public List<ProductDTO> GetTop8product()
         {
             products.Take(8);
-            
-            
-                return products;
-               // return products.GetRange(0, 8);
-            
-             
+
+            return products;
+            // return prods.GetRange(0, 8);         
         }
 
         public DateTime ArchiveProduct(int productID, DateTime dateTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UnarchiveProduct(int productID)
         {
             throw new NotImplementedException();
         }
