@@ -79,7 +79,7 @@ namespace Digishop.Controllers
         }
 
         [HttpGet]
-        public IActionResult ArchiveProduct(int id )
+        public IActionResult ArchiveProduct(int id)
         {
             product = productContainer.GetProductID(id);
             productViewModel = new ProductViewModel(product);

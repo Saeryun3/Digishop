@@ -74,7 +74,7 @@
                             </div>
                             <h4>€@pvm.ProductPrice</h4>
                         </div>
-                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                        <a asp-controller="Cart" asp-action="AddProductToCart" asp-route-productId="@pvm.ProductID"><i class="fal fa-shopping-cart cart"></i></a>
                     </div>
                 </a>
             }

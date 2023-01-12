@@ -1,0 +1,147 @@
+﻿@using WebshopLogic
+
+@{
+    Layout = null;
+}
+
+@model CartViewModel
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UFT-8" />
+    <meta http-equiv="X-UA-Compatible" content=" IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digishop</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+
+</head>
+<body>
+
+    <section id="header">
+        <a href="#"><img src="images/LogoV2.png" class="logo" alt="" /></a>
+
+        <div>
+            @*  <ul id="navbar">
+            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li>
+            <a href="">Alle Categorieën &dtrif;</a>
+            <ul class="dropdown">
+            @foreach (Category category in Model.categories)
+            {
+            <li><a asp-controller="Category" asp-action="Index" asp-route-categoryID="@category.CategoryID">@category.CategoryName</a></li>
+            }
+            </ul>
+            </li>
+            @if (!Model.signedIn)
+            {
+            <li><a asp-controller="User" asp-action="Login">Inloggen</a></li>
+            <li><a asp-controller="User" asp-action="CreateUser">Registreren</a></li>
+            }
+
+            @if (Model.signedIn && Model.admin)
+            {
+            <li><a asp-controller="Category" asp-action="CreateCategory">Voeg Categorie toe</a></li>
+            <li><a asp-controller="Product" asp-action="CreateProduct">Voeg product toe</a></li>
+            }
+
+            @if (Model.signedIn)
+            {
+            <li><a asp-controller="User" asp-action="Logout">Uitloggen</a></li>
+            }
+            <li><a href=""><i class="far fa-shopping-bag"></i></a></li>
+            </ul>*@
+        </div>
+    </section>
+
+    <section id="product1" class="section-p1">
+        <h2>Winkelmand</h2>
+        <div class="pro-container">
+            @if (Model.cartProducts.Count == 0)
+            {
+                <p>Je hebt geen producten in uw winkelwagen</p>
+            }
+            else
+            {
+                @foreach (OrderProduct cartProduct in Model.cartProducts)
+                {
+                    <li>
+                        @cartProduct.product.ProductName -
+                        @cartProduct.Amount -
+                        @cartProduct.TotalPrice |
+                        <a asp-controller="Cart" asp-action="RemoveProductFromCart" asp-route-productId="@cartProduct.ProductID">-</a>
+                        <a asp-controller="Cart" asp-action="AddProductAmountToCart" asp-route-productId="@cartProduct.ProductID">+</a>
+                    </li>
+                    @*                <a asp-controller="Product" asp-action="Index" asp-route-id="@pvm.ProductID">
+            <div class="pro">
+            <img src="@pvm.ProductImage" alt="" />
+            <div class="des">
+            <h5>@pvm.ProductName</h5>
+            <div class="star">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            </div>
+            <h4>€@pvm.ProductPrice</h4>
+            </div>
+            <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            </a>*@
+                }
+
+            }
+            <a asp-action="Order">Nu Bestellen</a>
+
+        </div>
+    </section>
+    <footer class="section-p1">
+        <div class="col">
+            <img class="logo" src="images/LogoV2.png" alt="" />
+            <h4>Contact</h4>
+            <p><strong>Adres:</strong> Professor Goossenlaan 1</p>
+            <p><strong>Telefoon nummer</strong>(+31) 64234378</p>
+            <p><strong>Openingstijden</strong> 10:00 - 18:00, maandag tot en met zaterdag</p>
+            <div class="follow">
+                <h4>Volg ons ook op</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-twitter"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-pinterest-p"></i>
+                    <i class="fab fa-youtube"></i>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Informatie</h4>
+            <a href="#">Over ons</a>
+            <a href="#">Verzending</a>
+            <a href="#">privacybeleid</a>
+            <a href="#">Algemene Voorwaarden</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="col">
+            <h4>Mijn account</h4>
+            <a href="#">Inloggen</a>
+            <a href="#">Winkelwagen</a>
+            <a href="#">Wenslijst</a>
+            <a href="#">Volg Mijn Bestelling</a>
+            <a href="#">Help</a>
+        </div>
+        <div class="col install">
+            <h4>Veilig betalen</h4>
+            <img src="images/pay.png" alt="" />
+        </div>
+        <div class="copyright">
+            <p>© 2022, Tech2 etc - HTML CSS Ecommerce Template</p>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js"></script>
+</body>
+
+</html>

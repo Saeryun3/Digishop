@@ -68,6 +68,5 @@ namespace Digishop.Controllers
                 categories = categoryContainer.GetAllCategories()
             });
         }
-
     }
 }

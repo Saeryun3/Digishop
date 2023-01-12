@@ -13,6 +13,7 @@ namespace WebshopLogic
         public int UserID { get; set; }
         public DateTime OrderDate { get; set; }
         public int OrderNumber { get; set; }
+        public string CartID { get; set; }
 
         public Order(OrderDTO orderDTO)
         {
