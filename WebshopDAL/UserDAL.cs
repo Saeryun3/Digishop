@@ -33,6 +33,35 @@ namespace WebshopDAL
             return true;
         }
 
+        public bool UpdateUserAddress(UserDTO userDTO)
+        {
+            try
+            {
+                sqlConnection.Open();
+                SqlCommand sqlCommand = new SqlCommand("UPDATE [User] SET PhoneNumber = @PhoneNumber, Address = @Address, HouseNumber = @HouseNumber, PostalCode = @PostalCode, City = @City WHERE UserID = @UserID", sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@UserID", userDTO.UserID);
+                sqlCommand.Parameters.AddWithValue("@PhoneNumber", userDTO.PhoneNumber);
+                sqlCommand.Parameters.AddWithValue("@Address", userDTO.Address);
+                sqlCommand.Parameters.AddWithValue("@HouseNumber", userDTO.HouseNumber);
+                sqlCommand.Parameters.AddWithValue("@PostalCode", userDTO.PostalCode);
+                sqlCommand.Parameters.AddWithValue("@City", userDTO.City);
+
+                sqlCommand.ExecuteNonQuery();
+
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return true ;
+        }
+
         public bool UserExist(UserDTO userDTO)
         {
 

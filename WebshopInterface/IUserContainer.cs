@@ -10,6 +10,7 @@ namespace WebshopInterface
     {
         bool CreateUser(UserDTO userDTO);
         bool UserExist(UserDTO userDTO);
+        bool UpdateUserAddress(UserDTO userDTO);
         bool UserExistsByEmailAndPassword(string email, string password);
         UserDTO GetUserByEmailAndPassword(UserDTO userDTO);
     }

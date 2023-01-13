@@ -15,7 +15,7 @@ namespace WebshopLogic
         public bool IsAdmin { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string HouseNumber { get; set; }
         public string PostalCode { get; set; }
@@ -42,7 +42,7 @@ namespace WebshopLogic
         }
 
         //constructor test
-        public User(int userID, string email, string password, bool isAdmin, string firstName, string lastName, int phoneNumber, string address, string houseNumber, string postalCode, string city)
+        public User(int userID, string email, string password, bool isAdmin, string firstName, string lastName, string phoneNumber, string address, string houseNumber, string postalCode, string city)
         {
             UserID = userID;
             Email = email;

@@ -14,7 +14,7 @@ namespace WebshopInterface
         bool AddToCart(string CartID, int ProductID, int Amount, double UnitPrice);
         bool UpdateCart(string CartID, int ProductID, int Amount);
         bool DeleteFromCart(string CartID, int ProductID);
-        bool PlaceOrder(int userID);
+        bool PlaceOrder(int userID, string CartID);
 
     }
 }

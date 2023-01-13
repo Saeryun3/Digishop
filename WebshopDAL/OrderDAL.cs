@@ -91,7 +91,7 @@ namespace WebshopDAL
             return true;
         }
 
-        public bool PlaceOrder(int userID)
+        public bool PlaceOrder(int userID, string CartID)
         {
             //plaats order
             string orderNumber = Guid.NewGuid().ToString();
@@ -99,18 +99,17 @@ namespace WebshopDAL
             try
             {
                 SqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Order](UserID, OrderDate, OrderNumber) VALUES (@userID, @orderDate, @orderNumber)", SqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO [Order](UserID, OrderDate, OrderNumber) VALUES (@userID, @orderDate, @orderNumber); SELECT CAST(SCOPE_IDENTITY() as int)", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("@userID", userID);
                 sqlCommand.Parameters.AddWithValue("@orderDate", DateTime.Now);
                 sqlCommand.Parameters.AddWithValue("@orderNumber", orderNumber);
 
-                sqlCommand.ExecuteNonQuery();
-
-                //verander shopID en cartId in tabel orderproducts
-                SqlCommand sqlCommand2 = new SqlCommand("Update OrderProduct SET OrderID = @orderId AND CartID = @cartID", SqlConnection);
-                sqlCommand.Parameters.AddWithValue("@orderId", GetOrderIDByUserIDAndOrderNumber(userID, orderNumber));
-                sqlCommand.Parameters.AddWithValue("@cartID", null);
-
+                int orderId = (int) sqlCommand.ExecuteScalar();
+               
+                SqlCommand sqlCommand2 = new SqlCommand("Update OrderProduct SET OrderID = @orderId WHERE CartID = @cartID", SqlConnection);
+                sqlCommand2.Parameters.AddWithValue("@orderId", orderId);
+                sqlCommand2.Parameters.AddWithValue("@cartID", CartID);
+                sqlCommand2.ExecuteNonQuery();
             }
             catch (Exception exception)
             {

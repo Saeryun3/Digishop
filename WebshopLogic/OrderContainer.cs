@@ -68,12 +68,13 @@ namespace WebshopLogic
 
             if (cartProduct.ProductID > 0)
             {
-                if ((cartProduct.Amount + Amount) > 0)
+                if ((cartProduct.Amount + Amount) == 0)
                 {
-                    return _iOrdercontainer.UpdateCart(CartID, ProductID, Amount);
-                }
+                    return _iOrdercontainer.DeleteFromCart(CartID, ProductID);
 
-                return _iOrdercontainer.DeleteFromCart(CartID, ProductID);
+                }
+                return _iOrdercontainer.UpdateCart(CartID, ProductID, Amount);
+
             }
 
             return _iOrdercontainer.AddToCart(CartID, ProductID, Amount, UnitPrice);
@@ -100,9 +101,9 @@ namespace WebshopLogic
             return _iOrdercontainer.UpdateCart(CartID, ProductID, 1);
         }
 
-        public bool PlaceOrder(int userID)
+        public bool PlaceOrder(int userID, string CartID)
         {
-            return _iOrdercontainer.PlaceOrder(userID);
+            return _iOrdercontainer.PlaceOrder(userID, CartID);
         }
 
 

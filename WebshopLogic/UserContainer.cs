@@ -11,7 +11,7 @@ namespace WebshopLogic
     public class UserContainer
     {
         private IUserContainer _iuserContainer;
-        public UserContainer (IUserContainer iuser)
+        public UserContainer(IUserContainer iuser)
         {
             _iuserContainer = iuser;
         }
@@ -25,6 +25,12 @@ namespace WebshopLogic
                 return true;
             }
             return false;
+        }
+
+        public bool UpdateUserAddress(User user)
+        {
+            UserDTO userDTO = UserConvertor.UserToDTO(user);
+           return  _iuserContainer.UpdateUserAddress(userDTO);
         }
         public bool UserExist(User user)
         {

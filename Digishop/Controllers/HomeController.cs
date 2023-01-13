@@ -20,9 +20,16 @@ namespace Digishop.Controllers
 
         public IActionResult Index()
         {
+
+            
             HomeViewModel hvm = new HomeViewModel();
             hvm.products = productContainer.GetTop8product();
             hvm.categories = categoryContainer.GetAllCategories();
+
+            if (HttpContext.Request.QueryString.HasValue && HttpContext.Request.QueryString.Value.Contains("OrderPlaced"))
+            {
+                hvm.showOrderPlacedBox = true;
+            }
 
             if(HttpContext.Session.GetInt32("UserID") != null)
             {

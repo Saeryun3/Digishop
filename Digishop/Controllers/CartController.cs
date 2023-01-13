@@ -38,11 +38,11 @@ namespace Digishop.Controllers
 
             if (String.IsNullOrEmpty(HttpContext.Session.GetString("CartID")))
             {
-                HttpContext.Session.SetString("CartID", Guid.NewGuid().ToString());
+                HttpContext.Session.SetString("CartID", Guid.NewGuid().ToString()); 
             }
 
             orderContainer.AddToCart(HttpContext.Session.GetString("CartID"), productId, 1, product.ProductPrice);
-
+            
             return Redirect(Request.Headers["Referer"].ToString());
         }
 
@@ -60,8 +60,11 @@ namespace Digishop.Controllers
             return Redirect(Request.Headers["Referer"].ToString());
         }
 
-        public IActionResult Order()
+
+        [HttpPost]
+        public IActionResult Order(CartViewModel cvm)
         {
+            UserContainer userContainer = new UserContainer(new UserDAL());
 
             if (String.IsNullOrEmpty(Convert.ToString(HttpContext.Session.GetInt32("UserID"))))
             {
@@ -69,8 +72,24 @@ namespace Digishop.Controllers
             }
             else
             {
-                orderContainer.PlaceOrder((int)HttpContext.Session.GetInt32("UserID").Value);
-                return RedirectToAction("Index", "Home");
+                int UserID = (int)HttpContext.Session.GetInt32("UserID").Value;
+
+                User user = new User();
+                user.UserID = UserID;
+                user.PhoneNumber = cvm.PhoneNumber;
+                user.Address = cvm.Address;
+                user.HouseNumber = cvm.HouseNumber;
+                user.PostalCode = cvm.PostalCode;
+                user.City = cvm.City;
+
+                userContainer.UpdateUserAddress(user);
+
+                if (orderContainer.PlaceOrder(UserID, HttpContext.Session.GetString("CartID")))
+                {
+                    HttpContext.Session.SetString("CartID", Guid.NewGuid().ToString());
+                }
+
+                return RedirectToAction("Index", "Home", new { OrderPlaced = true });
             }
         }
     }
