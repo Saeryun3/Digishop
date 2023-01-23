@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using WebshopInterface;
 
 namespace WebshopDAL
@@ -25,6 +24,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -53,6 +53,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -95,13 +96,14 @@ namespace WebshopDAL
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
-                    categoryName = (string)reader[0];
+                   // categoryName = (string)reader[0];
+                    categoryName = (string)reader["CategoryName"];
                 }
-                categoryName = (string)reader["CategoryName"];
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {

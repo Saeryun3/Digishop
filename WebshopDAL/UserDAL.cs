@@ -62,7 +62,7 @@ namespace WebshopDAL
             return true ;
         }
 
-        public bool UserExist(UserDTO userDTO)
+        public bool UserExistsByEmail(UserDTO userDTO)
         {
 
             try
@@ -144,10 +144,6 @@ namespace WebshopDAL
                 sqlConnection.Close();
             }
             return userDTO;
-        }
-        public UserDTO GetUser(UserDTO userDTO)
-        {
-            throw new NotImplementedException();
         }
     }
 }

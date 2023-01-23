@@ -1,6 +1,6 @@
 ﻿@model Digishop.Models.ProductViewModel
 
-<h4>ProductViewModel</h4>
+<h4>Maak Product aan</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -39,26 +39,17 @@
 </div>
 
 
-@{
-    if (ViewBag.Message != null)
-    {
-        <div>
-            @ViewBag.Message
-        </div>
-    }
-}
-
-
-@*@if (Model.products != null)
+@if (TempData.ContainsKey("message"))
 {
-    @foreach (var cvm in Model.products)
-    {
-        <tr>
-            <td>@cvm.ProductName</td>
-        </tr>
-    }
+    <script>
+
+        window.onload = function () {
+            alert("@TempData["message"].ToString()");
+        }
+
+    </script>
 }
-*@
+
 <table class="table">
 
     <tbody>

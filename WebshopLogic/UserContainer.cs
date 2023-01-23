@@ -18,7 +18,7 @@ namespace WebshopLogic
         public bool CreateUser(User user)
         {
 
-            if (!UserExist(user))
+            if (!UserExistsByEmail(user))
             {
                 UserDTO userDTO = UserConvertor.UserToDTO(user);
                 _iuserContainer.CreateUser(userDTO);
@@ -32,10 +32,10 @@ namespace WebshopLogic
             UserDTO userDTO = UserConvertor.UserToDTO(user);
            return  _iuserContainer.UpdateUserAddress(userDTO);
         }
-        public bool UserExist(User user)
+        public bool UserExistsByEmail(User user)
         {
             UserDTO userDTO = UserConvertor.UserToDTO(user);
-            return _iuserContainer.UserExist(userDTO);
+            return _iuserContainer.UserExistsByEmail(userDTO);
         }
 
         public bool UserExistsByEmailAndPassword(User user)
@@ -47,12 +47,5 @@ namespace WebshopLogic
             UserDTO userDTO = UserConvertor.UserToDTO(user);
             return new User(_iuserContainer.GetUserByEmailAndPassword(userDTO));
         }
-        // add adresgegevens 
-
-
-        //public User GetUser(User user)
-        //{
-        //    return new User(_iuserContainer.GetUser(user.Email, user.Password));//GetUserByEmailAndPassword(user.Email, user.Password));
-        //}
     }
 }

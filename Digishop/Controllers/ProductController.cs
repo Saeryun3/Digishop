@@ -56,7 +56,7 @@ namespace Digishop.Controllers
             }
             else
             {
-                ViewBag.Message = "already exist";
+                TempData["message"] = "Deze productnaam heb je al";
             }
             return RedirectToAction("CreateProduct"); 
 

@@ -20,7 +20,7 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Sam",
                 LastName = "Dag",
-                PhoneNumber = 0644335690,
+                PhoneNumber = "0644335690",
                 Address = "steenmanslaan",
                 HouseNumber = "10A",
                 PostalCode = "4030AB",
@@ -34,7 +34,7 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Mas",
                 LastName = "Gad",
-                PhoneNumber = 0691268246,
+                PhoneNumber = "0691268246",
                 Address = "schipkaarten",
                 HouseNumber = "1",
                 PostalCode = "1221AD",
@@ -62,7 +62,12 @@ namespace WebshopTest
             return null;
         }
 
-        public bool UserExist(UserDTO userDTO)
+        public bool UpdateUserAddress(UserDTO userDTO)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UserExistsByEmail(UserDTO userDTO)
         {
             foreach (UserDTO user in users)
             {

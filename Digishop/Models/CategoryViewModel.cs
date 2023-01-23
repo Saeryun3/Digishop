@@ -9,7 +9,7 @@ namespace Digishop.Models
 
         public int CategoryID { get; set; }
         [Required]
-        [DisplayName("Categorie naam:")]
+        [DisplayName("Category")]
         public string CategoryName { get; set; }
         public List<Category> categories { get; set; }
         public List<Product> products { get; set; }

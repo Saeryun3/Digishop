@@ -1,4 +1,5 @@
 ﻿using Digishop.Models;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using WebshopDAL;
@@ -23,12 +24,21 @@ namespace Digishop.Controllers
 
             
             HomeViewModel hvm = new HomeViewModel();
+            
             hvm.products = productContainer.GetTop8product();
             hvm.categories = categoryContainer.GetAllCategories();
 
-            if (HttpContext.Request.QueryString.HasValue && HttpContext.Request.QueryString.Value.Contains("OrderPlaced"))
+            if (HttpContext.Request.QueryString.HasValue && HttpContext.Request.Query["OrderPlaced"].ToString() == "True")
             {
-                hvm.showOrderPlacedBox = true;
+                hvm.showOrderPlacedBox = true;                
+            }
+            else if(HttpContext.Request.QueryString.HasValue && HttpContext.Request.Query["OrderPlaced"].ToString() == "False")
+            {
+                hvm.showOrderPlacedBox = false;
+            }
+            else
+            {
+                hvm.showOrderPlacedBox = null;
             }
 
             if(HttpContext.Session.GetInt32("UserID") != null)

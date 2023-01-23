@@ -51,7 +51,7 @@ namespace Digishop.Controllers
             }
             else
             {
-                ViewBag.Message = "already exist";
+                ViewBag.Message = "Deze categorienaam bestaat al, maak een andere categorienaam aan";
 
             }
             return View(new CategoryViewModel()

@@ -32,6 +32,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -65,6 +66,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -98,6 +100,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -120,6 +123,7 @@ namespace WebshopDAL
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -214,7 +218,7 @@ namespace WebshopDAL
             try
             {
                 SqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE CategoryID = @CategoryID", SqlConnection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM Product WHERE CategoryID = @CategoryID AND [Delete] is NULL", SqlConnection);
                 sqlCommand.Parameters.AddWithValue("CategoryID", categoryID);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())

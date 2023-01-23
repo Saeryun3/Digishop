@@ -60,7 +60,14 @@
         </div>
     </section>
 
-    @if (Model.showOrderPlacedBox)
+    @if (!Model.showOrderPlacedBox.HasValue)
+    {
+    }
+    else if(Model.showOrderPlacedBox.Value == false)
+    {
+        <h3 style="color: red;">Je bestelling is niet gelukt</h3>
+    }
+    else if (Model.showOrderPlacedBox.Value == true)
     {
         <h3 style="color: green;">Je bestelling is succesvol geplaatst.</h3>
     }
@@ -124,7 +131,7 @@
                             </div>
                             <h4>€@pvm.ProductPrice</h4>
                         </div>
-                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                        <a asp-controller="Cart" asp-action="AddProductToCart" asp-route-productId="@pvm.ProductID"><i class="fal fa-shopping-cart cart"></i></a>
                     </div>
                 </a>
 

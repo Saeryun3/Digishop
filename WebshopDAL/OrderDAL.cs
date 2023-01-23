@@ -12,11 +12,6 @@ namespace WebshopDAL
     {
         SqlConnection SqlConnection = new SqlConnection("Server=mssqlstud.fhict.local;Database=dbi479257_webshopdtb;User Id=dbi479257_webshopdtb;Password=Dagal555");
 
-        public bool SetOrder()
-        {
-            throw new NotImplementedException();
-        }
-
         public bool AddToCart(string CartID, int ProductID, int Amount, double UnitPrice)
         {
             try
@@ -120,45 +115,42 @@ namespace WebshopDAL
             {
                 SqlConnection.Close();
             }
-
             return true;
-
-
         }
 
-        public int GetOrderIDByUserIDAndOrderNumber(int userID, string orderNumber)
+        //public int GetOrderIDByUserIDAndOrderNumber(int userID, string orderNumber)
+        //{
+        //    try
+        //    {
+        //        SqlConnection.Open();
+        //        SqlCommand sqlCommand = new SqlCommand("SELECT (OrderID) FROM [Order] WHERE UserID = @userID AND OrderNumber = @orderNumber", SqlConnection);
+        //        sqlCommand.Parameters.AddWithValue("@userID", userID);
+        //        sqlCommand.Parameters.AddWithValue("@orderNumber", orderNumber);
+
+        //        SqlDataReader reader = sqlCommand.ExecuteReader();
+
+        //        while (reader.Read())
+        //        {
+        //            return (int)reader["OrderID"];
+        //        }
+        //    }
+        //    catch (Exception exception)
+        //    {
+        //        Console.WriteLine(exception);
+        //        throw;
+        //    }
+        //    finally
+        //    {
+        //        SqlConnection.Close();
+        //    }
+
+        //    return 0;
+
+        //}
+
+        public List<OrderDTO> GetCartProducts(string CartID)
         {
-            try
-            {
-                SqlConnection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT (OrderID) FROM [Order] WHERE UserID = @userID AND OrderNumber = @orderNumber", SqlConnection);
-                sqlCommand.Parameters.AddWithValue("@userID", userID);
-                sqlCommand.Parameters.AddWithValue("@orderNumber", orderNumber);
-
-                SqlDataReader reader = sqlCommand.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    return (int)reader["OrderID"];
-                }
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-                throw;
-            }
-            finally
-            {
-                SqlConnection.Close();
-            }
-
-            return 0;
-
-        }
-
-        public List<OrderProductDTO> GetCartProducts(string CartID)
-        {
-            List<OrderProductDTO> orderProducts = new List<OrderProductDTO>();
+            List<OrderDTO> orderProducts = new List<OrderDTO>();
 
             try
             {
@@ -169,7 +161,7 @@ namespace WebshopDAL
 
                 while (reader.Read())
                 {
-                    orderProducts.Add(new OrderProductDTO(0, (int)reader["ProductID"], (int)reader["Amount"], (double)reader["UnitPrice"]));
+                    orderProducts.Add(new OrderDTO(0, (int)reader["ProductID"], (int)reader["Amount"], (double)reader["UnitPrice"]));
                 }
             }
             catch (Exception exception)
@@ -185,9 +177,9 @@ namespace WebshopDAL
             return orderProducts;
         }
 
-        public OrderProductDTO GetCartProduct(string CartID, int ProductID)
+        public OrderDTO GetCartProduct(string CartID, int ProductID)
         {
-            OrderProductDTO cartProduct = new OrderProductDTO();
+            OrderDTO cartProduct = new OrderDTO();
 
             try
             {

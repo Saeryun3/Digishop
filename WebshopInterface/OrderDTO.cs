@@ -9,17 +9,19 @@ namespace WebshopInterface
     public class OrderDTO
     {
         public int OrderID { get; set; }
-        public int UserID { get; set; }
-        public DateTime OrderDate { get; set; }
-        public int OrderNumber { get; set; }
-        public OrderDTO(int orderID, int userID, DateTime orderDate, int orderNumber)
+        public int ProductID { get; set; }
+        public int Amount { get; set; }
+        public double UnitPrice { get; set; }
+
+        public ProductDTO product { get; set; } 
+
+        public OrderDTO(int orderID, int productID, int amount, double unitPrice)
         {
             OrderID = orderID;
-            UserID = userID;
-            OrderDate = orderDate;
-            OrderNumber = orderNumber;
-        }       
-        
+            ProductID = productID;
+            Amount = amount;
+            UnitPrice = unitPrice;
+        }
         public OrderDTO()
         {
 

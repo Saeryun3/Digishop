@@ -19,7 +19,7 @@ namespace Digishop.Controllers
             user.Password = uvm.Password;
             user.IsAdmin = uvm.IsAdmin;
             if (!ModelState.IsValid)
-                if (!userContainer.UserExist(user))
+                if (!userContainer.UserExistsByEmail(user))
                 {
                     userContainer.CreateUser(user);
                     ViewBag.Message = "Het account is succesvol aangemaakt";
@@ -61,7 +61,12 @@ namespace Digishop.Controllers
                     loggedplayer.IsAdmin = false;
                     HttpContext.Session.SetInt32("UserID", loggedplayer.UserID);
                     return RedirectToAction("Index", "Home");   
-                }                
+                }  
+                
+            }
+            else
+            {
+                ViewBag.Message = "Voer een geldige E-mail en/of wachtwoord in";
             }
             return View();
         }

@@ -26,7 +26,7 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Sas",
                 LastName = "allen",
-                PhoneNumber = 0697532764,
+                PhoneNumber = "0697532764",
                 Address = "Heikantstraat",
                 HouseNumber = "11",
                 PostalCode = "2022AB",
@@ -62,14 +62,14 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Mas",
                 LastName = "Gad",
-                PhoneNumber = 0691268246,
+                PhoneNumber = "0691268246",
                 Address = "schipkaarten",
                 HouseNumber = "1",
                 PostalCode = "1221AD",
                 City = "Tilburg",
             };
             //act
-            var actual = (userContainer.UserExist(user3));
+            var actual = (userContainer.UserExistsByEmail(user3));
             //assert
             Assert.IsTrue(actual);
         }
@@ -87,14 +87,14 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Sas",
                 LastName = "allen",
-                PhoneNumber = 0697532764,
+                PhoneNumber = "0697532764",
                 Address = "Heikantstraat",
                 HouseNumber = "11",
                 PostalCode = "2022AB",
                 City = "Rotterdam",
             };
             //act
-            var actual = userContainer.UserExist(user3);
+            var actual = userContainer.UserExistsByEmail(user3);
             //assert 
             Assert.IsFalse(actual);
         }
@@ -112,7 +112,7 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Sam",
                 LastName = "Dag",
-                PhoneNumber = 0644335690,
+                PhoneNumber = "0644335690",
                 Address = "steenmanslaan",
                 HouseNumber = "10A",
                 PostalCode = "4030AB",
@@ -139,7 +139,7 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Sam",
                 LastName = "Dag",
-                PhoneNumber = 0644335690,
+                PhoneNumber = "0644335690",
                 Address = "steenmanslaan",
                 HouseNumber = "10A",
                 PostalCode = "4030AB",
@@ -165,7 +165,7 @@ namespace WebshopTest
                 IsAdmin = false,
                 FirstName = "Sas",
                 LastName = "allen",
-                PhoneNumber = 0697532764,
+                PhoneNumber = "0697532764",
                 Address = "Heikantstraat",
                 HouseNumber = "11",
                 PostalCode = "2022AB",

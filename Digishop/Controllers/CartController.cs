@@ -87,9 +87,13 @@ namespace Digishop.Controllers
                 if (orderContainer.PlaceOrder(UserID, HttpContext.Session.GetString("CartID")))
                 {
                     HttpContext.Session.SetString("CartID", Guid.NewGuid().ToString());
+                    return RedirectToAction("Index", "Home", new { OrderPlaced = true });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { OrderPlaced = false });
                 }
 
-                return RedirectToAction("Index", "Home", new { OrderPlaced = true });
             }
         }
     }

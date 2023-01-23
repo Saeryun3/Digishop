@@ -16,13 +16,14 @@ namespace WebshopTest
         {
             //arrange
             int orderID = 1;
-            int userID = 1;
-            DateTime orderDate = DateTime.Now;
-            int orderNumber = 1413199821;
+            int productID = 1;
+            int amount = 5;
+            double unitPrice = 3.99;
+            Product product = new Product();            
             //act
-            var order = new Order(orderID, userID, orderDate, orderNumber);
+            var order = new Order(orderID, productID, amount, unitPrice, product);
             //assert
-            Assert.IsTrue(order.OrderID == orderID && order.UserID == userID && order.OrderDate == orderDate && order.OrderNumber == orderNumber);
+            Assert.IsTrue(order.OrderID == orderID && order.ProductID == productID && order.Amount == amount && order.UnitPrice == unitPrice && order.product == product);
         }
     }
    

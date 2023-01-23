@@ -21,7 +21,7 @@ namespace WebshopTest
             bool isAdmin = false;
             string firstName = "Sam";
             string lastName = "Dag";
-            int phoneNumber = 0644335690;
+            string phoneNumber = "0644335690";
             string address = "steenmanslaan";
             string houseNumber = "10A";
             string postalCode = "4030AB";
